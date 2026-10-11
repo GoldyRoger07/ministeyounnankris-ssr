@@ -1,0 +1,63 @@
+<section class="relative w-full h-screen overflow-hidden bg-[#092B45]">
+
+  <!-- Background video -->
+  <video
+    #heroVideo
+    class="absolute inset-0 w-full h-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="/img/hero-poster.webp"
+    aria-hidden="true"
+  >
+    <source
+      src="/video/hero.mp4"
+      type="video/mp4"
+    />
+
+    <source
+      src="/video/hero.mp4"
+      type="video/mp4"
+    />
+  </video>
+
+  <!-- Dark overlay -->
+  <div
+    class="absolute inset-0 bg-black/50">
+  </div>
+
+  <!-- Hero content -->
+  <div
+    class="relative z-10 flex flex-col
+           items-center justify-center
+           h-full px-6 text-center text-white"
+  >
+
+    <span class="uppercase tracking-[0.3em] text-sm text-shadow-gray-400 text-shadow-lg">
+      Ministè Youn Nan Kris
+    </span>
+
+    <h1 class="text-5xl md:text-7xl font-bold mt-6 text-shadow-gray-400 text-shadow-lg">
+      Unis en Christ,
+      <br />
+      pour transformer des vies.
+    </h1>
+
+    <p class="max-w-2xl mt-6 text-lg text-white/80">
+      Une communauté unie autour de la louange,
+      de la prière et de l'évangélisation.
+    </p>
+
+    <a
+      routerLink="/a-propos"
+      class="mt-8 px-8 py-4 bg-[#F47A32]
+             rounded-full font-semibold"
+    >
+      Découvrir le ministère
+    </a>
+
+  </div>
+
+</section>

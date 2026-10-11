@@ -5,7 +5,7 @@ export const companyConfig: Company = {
   name: 'Ministe Youn Nan Kris',
   legalName: 'Ministe Youn Nan Kris',
   logo: {
-    light: '/img/mynk.svg',
+    light: '/img/mynk-logo.svg',
     dark: '/images/logos/new_seco_white_logo.png',
   },
   contact: {

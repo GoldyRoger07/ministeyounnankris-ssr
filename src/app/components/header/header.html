@@ -11,11 +11,15 @@
   [class.is-scrolled]="scrolled()"
   class="fixed inset-x-0 top-0 z-50 w-full border-b border-transparent py-2 transition-all duration-300 will-change-transform"
 >
-  <cc-container>
-    <nav class="flex h-16 w-full items-center justify-between gap-2 py-1" [attr.aria-label]="content().mainNav">
+  <my-container>
+    <nav class="flex h-16 w-full items-center justify-between gap-2 py-1 text-gray-700" [attr.aria-label]="content().mainNav">
       <!-- Logo -->
-      <a [routerLink]="language.localize('/')" class="flex shrink-0 items-center gap-2.5" [attr.aria-label]="content().homeAria">
+      <a [routerLink]="language.localize('/')" class="flex shrink-0 items-center gap-2" [attr.aria-label]="content().homeAria">
         <img [src]="company().logo.light" class="h-11 w-auto" [alt]="company().name" />
+        <div class="flex flex-col font-bold text-xs  items-center text-center">
+                <span class="text-red-500 uppercase">Ministe</span>
+                <span class="uppercase -translate-y-1">Youn Nan Kris</span>
+        </div>
       </a>
 
       <div class="flex items-center gap-3">
@@ -30,7 +34,7 @@
                 [routerLink]="item.url"
                 routerLinkActive="text-(--brand-primary)"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="text-sm font-semibold text-(--brand-secondary) transition-colors hover:text-(--brand-primary)"
+                class="text-xs font-regular text-gray-700 transition-colors hover:text-(--brand-primary)"
               >
                 {{ item.label }}
               </a>
@@ -41,10 +45,10 @@
         <li>
           <label class="relative flex items-center">
             <span class="sr-only">{{ content().language }}</span>
-            <i class="ri-global-line pointer-events-none absolute left-2 text-base text-(--brand-secondary)" aria-hidden="true"></i>
+            <i class="ri-global-line pointer-events-none absolute left-2 text-gray-700 text-(--brand-secondary)" aria-hidden="true"></i>
             <select
               (change)="changeLanguage($event)"
-              class="cursor-pointer appearance-none rounded-(--brand-radius) border border-gray-200 bg-white py-1.5 pr-7 pl-7 text-sm font-semibold text-(--brand-secondary) transition-colors hover:border-(--brand-primary) focus:border-(--brand-primary) focus:outline-none"
+              class="cursor-pointer appearance-none rounded-(--brand-radius) border border-gray-200 bg-white py-1.5 pr-7 pl-7 text-xs font-semibold text-(--brand-secondary) transition-colors hover:border-(--brand-primary) focus:border-(--brand-primary) focus:outline-none"
             >
               @for (option of languages; track option.code) {
                 <option [value]="option.code" [selected]="option.code === language.language()" [attr.lang]="option.code">{{ option.name }}</option>
@@ -64,12 +68,12 @@
         >
           {{ content().actions.login.label }}
         </a> -->
-        <a
+        <!-- <a
           [routerLink]="language.localize(content().actions.register.url)"
           class="rounded-(--brand-radius) border-2 border-(--brand-primary) bg-(--brand-primary) px-4 py-2 text-sm font-bold text-white shadow transition-transform duration-200 hover:-translate-y-0.5"
         >
           {{ content().actions.register.label }}
-        </a>
+        </a> -->
       </div >
       </div>
       
@@ -88,7 +92,7 @@
         </svg>
       </button>
     </nav>
-  </cc-container>
+  </my-container>
 </header>
 
 <!-- Menu plein écran (mobile) -->
@@ -165,20 +169,20 @@
   </ul>
 
   <div class="flex shrink-0 flex-col gap-3 border-t border-gray-200 px-5 py-5">
-    <a
+    <!-- <a
       [routerLink]="language.localize(content().actions.register.url)"
       class="rounded-(--brand-radius) bg-(--brand-primary) px-5 py-3 text-center font-bold text-white shadow"
       (click)="closeMenu()"
     >
       {{ content().actions.register.label }}
-    </a>
-    <a
+    </a> -->
+    <!-- <a
       [routerLink]="language.localize(content().actions.login.url)"
       class="rounded-(--brand-radius) border-2 border-(--brand-primary) px-5 py-3 text-center font-bold text-(--brand-primary)"
       (click)="closeMenu()"
     >
       {{ content().actions.login.label }}
-    </a>
+    </a> -->
     <label class="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-(--brand-muted)">
       <i class="ri-global-line text-base" aria-hidden="true"></i>
       <span>{{ content().language }}</span>

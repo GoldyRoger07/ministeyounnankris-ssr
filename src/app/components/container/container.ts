@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'cc-container',
+  selector: 'my-container',
   imports: [],
   templateUrl: './container.html',
   styleUrl: './container.scss'

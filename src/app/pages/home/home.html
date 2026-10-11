@@ -1,1 +1,112 @@
 
+
+<!-- <my-hero></my-hero> -->
+ <section class="h-screen pt-10 text-gray-700">
+     <my-container>
+        <div class="flex justify-center items-center">
+
+            <div class="flex flex-col gap-2 items-center text-center w-1/2">
+               <h1 class="font-extrabold text-5xl">{{content().heroSection.title}}</h1>
+               <p class="font-normal text-md">{{content().heroSection.desc}}</p>
+               <div class="flex items-center gap-2">
+                   <!-- <button class="cursor-pointer p-5 border border-red-500 rounded-2xl shadow-xl bg-linear-to-b from-red-500 via-red-400 to-gray-100 text-white">{{content().heroSection.cta1?.label}}</button> -->
+                   <button class="font-bold cursor-pointer p-5  rounded-2xl bg-linear-to-b from-red-500 via-amber-500 to-amber-200 text-white">{{content().whoWeAreSection.cta1?.label}}</button>
+                   <button class="font-bold cursor-pointer p-5  rounded-2xl bg-linear-to-b from-blue-500 via-blue-300 to-blue-200 text-white">{{content().heroSection.cta2?.label}}</button>
+               </div>
+            </div>
+        </div>
+     </my-container>
+
+ </section>
+
+ <section class="min-h-50 -bg-linear-180 from-white to-amber-100 py-10">
+    <my-container>
+        <div class="flex flex-col gap-5 items-center">
+            <div class="mx-auto flex flex-col gap-2.5 items-center text-center w-3/4">
+                <span class="text-red-700 font-extrabold text-xs">{{content().whoWeAreSection.title}}</span>
+                <h2 class="text-gray-700 text-3xl font-extrabold ">{{content().whoWeAreSection.subtitle}}</h2>
+                <p class="text-sm">{{content().whoWeAreSection.desc}}</p>
+                <button class="font-bold cursor-pointer p-5  rounded-2xl bg-linear-to-b from-red-500 via-amber-500 to-amber-200 text-white">{{content().whoWeAreSection.cta1?.label}}</button>
+            </div>
+
+            <div>
+                <!-- <img src="/img/home/Open French Bible with Golden Edges.png" alt="Open French Bible with Golden Edges"> -->
+                <img src="/img/home/United in Kingdom Growth.png" alt="United in Kingdom Growth">
+            </div>
+        </div>
+    </my-container>
+ </section>
+
+  <section class=" bg-gray-100 p-2.5 h-screen">
+    <div class="grid grid-cols-2 gap-2.5 h-full">
+           
+            <div class="pt-5 h-full flex flex-col items-center text-center bg-cover bg-center " style="background-image: linear-gradient(to bottom, rgb(0, 0, 30) , rgb(0, 0, 30), transparent 50%),url('/img/home/Milky Way Lighthouse Glow.webp');">
+                <div class="flex flex-col items-center text-center w-3/4">
+
+                    <span class="text-red-700 font-extrabold text-xs">{{content().visionAndMissionSection?.content?.[0].title}}</span>
+                    <h2 class="text-gray-200 text-xl font-extrabold">{{content().visionAndMissionSection?.content?.[0].subtitle}}</h2>
+                    <p class="text-gray-300 text-sm">{{content().visionAndMissionSection?.content?.[0].desc}}</p>
+                </div>
+
+                <!-- <img src="/img/home/Golden Lighthouse at Sunrise.png" alt="Golden Lighthouse at Sunrise"> -->
+            </div>
+
+            <div class="pt-5 min-h-100 flex flex-col items-center text-center bg-cover" style="background-image: linear-gradient(to bottom, white , white, transparent 50%),url('/img/home/Walking Toward the Light Gate.webp'); background-position: 0% 55%;">
+                <div class="flex flex-col items-center text-center w-3/4">
+
+                    <span class="text-red-700 font-extrabold text-xs">{{content().visionAndMissionSection?.content?.[1].title}}</span>
+                    <h2 class="text-gray-700 text-xl font-extrabold">{{content().visionAndMissionSection?.content?.[1].subtitle}}</h2>
+                    <p class="text-sm">{{content().visionAndMissionSection?.content?.[1].desc}}</p>
+                </div>
+
+                <!-- <img src="/img/home/5aae2f8c-42b5-4a2b-888a-62c78d0620da.png" alt="Golden Lighthouse at Sunrise"> -->
+            </div>
+            
+        </div>
+ </section>
+
+<section class=" bg-gray-100 min-h-100 py-5">
+    <my-container>
+        <div class="flex flex-col gap-5 items-center mb-5">
+            <div class="mx-auto flex flex-col gap-2.5 items-center text-center w-3/4">
+                
+                <h2 class="text-gray-700 text-3xl font-extrabold ">{{content().nosPilierSection.title}}</h2>
+                <!-- <p class="text-sm">{{content().whoWeAreSection.desc}}</p> -->
+                <!-- <button class="font-bold cursor-pointer p-5  rounded-2xl bg-linear-to-b from-red-500 via-amber-500 to-amber-200 text-white">{{content().whoWeAreSection.cta1?.label}}</button> -->
+            </div>
+
+            
+        </div>
+    </my-container>
+    <div class="grid grid-cols-3 gap-2.5 w-full overflow-x-auto px-2.5">
+                @for(card of content().nosPilierSection.cards; track $index){
+                    <div class="aspect-square bg-white hover:bg-amber-300 transition-all ease-in duration-150 flex flex-col gap-2 items-center justify-center p-2.5 text-center">
+                        <i class="text-5xl">{{card.icon}}</i>
+                        <h3 class="font-bold text-md text-gray-700">{{card.title}}</h3>
+                        <p class="text-sm text-gray-600 w-3/4">{{card.desc}}</p>
+                    </div>
+                }
+    </div>
+</section>
+
+<section class="communaute-section bg-cover min-h-70 py-5 flex items-center justify-center">
+    <my-container>
+           <div class="flex flex-col gap-5 items-center mb-5 w-full">
+                <div class="mx-auto flex flex-col gap-5 items-center text-center w-full">
+                    
+                    <h2 class="text-gray-700 text-3xl font-extrabold ">{{content().uneCommunauteUnieSection.title}}</h2>
+                    <!-- <p class="text-sm">{{content().whoWeAreSection.desc}}</p> -->
+                    <!-- <button class="font-bold cursor-pointer p-5  rounded-2xl bg-linear-to-b from-red-500 via-amber-500 to-amber-200 text-white">{{content().whoWeAreSection.cta1?.label}}</button> -->
+                    <div class="flex justify-between gap-20 items-center w-full">
+                        @for(card2 of content().uneCommunauteUnieSection.cards; track $index){
+                            <div class="flex flex-col justify-center items-center text-center text-gray-700">
+                                <span class="font-extrabold text-5xl">{{card2.desc}}</span>
+                                <span class="font-bold text-md text-nowrap">{{card2.title}}</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div> 
+    </my-container>
+    
+</section>

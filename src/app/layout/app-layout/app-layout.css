@@ -13,5 +13,5 @@
   flex-direction: column;
   min-height: 100dvh;
   color: var(--brand-secondary);
-  background-color: #fff;
+  /* background-color: #fff; */
 }

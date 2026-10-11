@@ -1,6 +1,7 @@
 header {
-  background-color: rgb(255 255 255 / 0.92);
+  /* background-color: rgb(255 255 255 / 0.92); */
   backdrop-filter: blur(10px);
+  color: #fff !important;
 }
 
 /* Ombre et filet n'apparaissent qu'une fois la page défilée. */

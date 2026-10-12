@@ -1,0 +1,39 @@
+<div class="carousel">
+    <div class="track">
+        <!-- @for(img of imgs; track $index){
+            <div class="item">
+                <img [src]="img.url" [class]="img.size" alt="slide-img">
+            </div>
+        }
+
+         @for(img of imgs; track $index){
+            <div class="item">
+                <img [src]="img.url" [class]="img.size" alt="slide-img">
+            </div>
+        } -->
+
+        @for(card3 of content().choralesAndGroupSection.cards; track $index){
+                <div class="item flex flex-col items-center justify-center gap-2.5 aspect-square rounded-xl min-w-80 bg-gray-100/90  border border-gray-200 ">
+                    <span class="font-semibold text-2xl text-gray-700 blue-xl">{{card3.title}}</span>
+                </div>
+        }
+
+        @for(card3 of content().choralesAndGroupSection.cards; track $index){
+                <div class="item flex flex-col items-center justify-center gap-2.5 aspect-square rounded-xl min-w-80 bg-gray-100/90  border border-gray-200 ">
+                    <span class="font-semibold text-2xl text-gray-700 blue-xl">{{card3.title}}</span>
+                </div>
+        }
+
+        @for(card3 of content().choralesAndGroupSection.cards; track $index){
+                <div class="item flex flex-col items-center justify-center gap-2.5 aspect-square rounded-xl min-w-80 bg-gray-100/90  border border-gray-200 ">
+                    <span class="font-semibold text-2xl text-gray-700 blue-xl">{{card3.title}}</span>
+                </div>
+        }
+
+        @for(card3 of content().choralesAndGroupSection.cards; track $index){
+                <div class="item flex flex-col items-center justify-center gap-2.5 aspect-square rounded-xl min-w-80 bg-gray-100/90 border border-gray-200">
+                    <span class="font-semibold text-2xl text-gray-700 blue-xl">{{card3.title}}</span>
+                </div>
+        }
+    </div>
+</div>

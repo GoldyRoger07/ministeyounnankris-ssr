@@ -11,7 +11,7 @@
                <div class="flex items-center gap-2">
                    <!-- <button class="cursor-pointer p-5 border border-red-500 rounded-2xl shadow-xl bg-linear-to-b from-red-500 via-red-400 to-gray-100 text-white">{{content().heroSection.cta1?.label}}</button> -->
                    <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().whoWeAreSection.cta1?.label}}</button>
-                   <button class="font-bold cursor-pointer p-5  rounded-2xl bg-blue-300  text-white">{{content().heroSection.cta2?.label}}</button>
+                   <button class="font-bold cursor-pointer p-5  rounded-2xl bg-blue-400  text-white">{{content().heroSection.cta2?.label}}</button>
                </div>
             </div>
         </div>
@@ -119,3 +119,143 @@
         <infinite-horizontal-scroll></infinite-horizontal-scroll>
     </div>
 </section>
+
+<section class="min-h-[70vh] bg-linear-to-b from-white to-amber-400 py-10">
+    <my-container>
+        <div class="flex flex-col items-center gap-5">
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold text-gray-700">{{content().evenementSection.title}}</h2>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 ">
+                @for(card4 of content().evenementSection.cards; track $index){
+                    <div class="relative bg-cover aspect-square overflow-hidden flex items-end group" >
+                        <img [src]="card4.image?.url" [alt]="card4.image?.alt" class="object-cover h-full w-full group-hover:scale-110 duration-1000 ease-in-out transition-transform">
+                        <div class="absolute top-0 left-0 w-full h-full z-5 flex flex-col justify-end px-5 py-2.5 bg-linear-to-b from-transparent to-white">
+                            <span class="font-bold text-gray-700">{{card4.title}}</span>
+                            <span class="text-xs text-gray-600">{{card4.desc}}</span>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().evenementSection.cta1?.label}}</button>
+        </div>
+    </my-container>
+</section>
+
+<section class="min-h-[70vh] bg-linear-to-b from-amber-400 to-white py-10">
+    <my-container>
+        <div class="flex flex-col items-center gap-5">
+            <div class="mb-10 text-center w-3/4">
+                <h2 class="text-3xl font-bold text-gray-700">{{content().formationSection.title}}</h2>
+                <p class="text-xl text-gray-600">{{content().formationSection.subtitle}}</p>
+            </div>
+
+            <div class="flex flex-col gap-5 w-full">
+                @for(card4 of content().formationSection.formationCards; track $index){
+                    <div class="bg-white/25 w-full grid grid-cols-[150px_1fr] gap-5 p-5 cursor-pointer">
+                       <img [src]="card4.cover" class="aspect-square object-cover object-center" alt="">
+                        <div class="flex flex-col justify-between">
+                            <div class="flex flex-col gap-2">
+
+                                <span class="text-amber-500 font-bold text-xs">{{card4.category}}</span>
+                                <span class="font-bold text-gray-700 text-xl">{{card4.title}}</span>
+                            </div>
+                            <div class="flex items-center gap-5 text-sm text-gray-600">
+                                <div class="flex items-center gap-1">
+                                    <i class="fa-solid fa-signal"></i>
+                                    <span>{{card4.level}}</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i class="fa-solid fa-hourglass-start"></i>
+                                    <span>{{card4.duration}}</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">{{card4.shortDescription}}</p>
+                            <!-- <span class="text-xs text-gray-600">{{card4.desc}}</span> -->
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().formationSection.cta1?.label}}</button>
+        </div>
+    </my-container>
+</section>
+
+<section class="py-10 min-h-170 bg-cover bg-bottom-left" style="background-image: url('/img/home/Serene Prayer Beside an Open Bible.webp');">
+    <div class="flex flex-col items-end w-full">
+        <div class="mb-10 text-center w-2/4 flex flex-col ">
+                <h2 class="text-3xl font-bold text-gray-700 w-3/4">{{content().prayerSection.title}}</h2>
+                <p class="text-md text-gray-600 w-3/4">{{content().prayerSection.desc}}</p>
+        </div>
+        <div class="flex flex-col w-1/2 ">
+            <h3 class="font-bold text-gray-700">{{content().prayerSection.title2}}</h3>
+            <p class="text-sm text-gray-500">{{content().prayerSection.desc2}}</p>
+            <form class="flex flex-col gap-3 my-10 w-3/4">
+                <div class="flex flex-col gap-2">
+
+                    <label>{{content().prayerSection.formulaire.nom.label}}</label>
+                    <input type="text" [placeholder]="content().prayerSection.formulaire.nom.placeholder" class="border border-gray-300 p-2">
+                </div>
+
+                <div class="flex flex-col gap-2">
+
+                    <label>{{content().prayerSection.formulaire.email.label}}</label>
+                    <input type="email" [placeholder]="content().prayerSection.formulaire.email.placeholder" class="border border-gray-300 p-2">
+                </div>
+
+                <div class="flex flex-col gap-2">
+
+                    <label>{{content().prayerSection.formulaire.telephone.label}}</label>
+                    <input type="tel" [placeholder]="content().prayerSection.formulaire.telephone.placeholder" class="border border-gray-300 p-2">
+                </div>
+
+                <div class="flex flex-col gap-2">
+
+                    <label>{{content().prayerSection.formulaire.sujet.label}}</label>
+                    <input type="text" [placeholder]="content().prayerSection.formulaire.sujet.placeholder" class="border border-gray-300 p-2">
+                </div>
+
+                <div class="flex flex-col gap-2">
+
+                    <label>{{content().prayerSection.formulaire.message.label}}</label>
+                    <textarea type="email" [placeholder]="content().prayerSection.formulaire.message.placeholder" class="border border-gray-300 p-2"></textarea>
+                </div>
+
+                <div class="flex items-center gap-2">
+
+                    <input type="checkbox" class="border border-gray-300 p-2">
+                    <label>{{content().prayerSection.formulaire.option}}</label>
+                </div>
+
+                <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().prayerSection.formulaire.cta?.label}}</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="h-100 bg-cover bg-bottom-right" style="background-image: url('/img/home/Sunlit Cross Over Misty Hills.webp');">
+    <div class="w-full h-full  flex items-center justify-center">
+        <div class="h-fit w-3/4">
+            <div class="mb-10 text-center flex flex-col items-center">
+                    <h2 class="text-3xl font-bold text-gray-700">{{content().lastCtaSection.title}}</h2>
+                    <p class="text-xl text-gray-600 w-3/4">{{content().lastCtaSection.desc}}</p>
+            </div>
+            <div class="flex justify-center items-center gap-2">
+                   <!-- <button class="cursor-pointer p-5 border border-red-500 rounded-2xl shadow-xl bg-linear-to-b from-red-500 via-red-400 to-gray-100 text-white">{{content().heroSection.cta1?.label}}</button> -->
+                   <button class="font-bold cursor-pointer py-5 px-7.5 rounded-2xl bg-amber-500 text-white">
+                        <i class="fa-solid fa-user-plus"></i>
+                        {{content().lastCtaSection.cta1?.label}}
+                    </button>
+                   <button class="font-bold cursor-pointer py-5 px-7.5  rounded-2xl bg-blue-400  text-white">
+                        <i class="fa-solid fa-phone"></i>
+                        {{content().lastCtaSection.cta2?.label}}
+                    </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+

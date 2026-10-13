@@ -9,8 +9,37 @@ export const companyConfig: Company = {
     dark: '/images/logos/new_seco_white_logo.png',
   },
   contact: {
-    email: 'contact@ministeyounnankris.com',
-    phone: '',
-    address: '',
+
+    email: {
+      icon: 'fa-solid fa-envelope',
+      content: 'contact@ministeyounnankris.com'
+    },
+    phone: {
+      icon: 'fa-solid fa-phone',
+      content: '50934585426',
+      label: '+509 34 58 5426'
+    },
+    address: {
+      icon: 'fa-solid fa-envelope',
+      content: 'contact@ministeyounnankris.com'
+    }
   },
+  socials: [
+    {
+      icon: 'fa-brands fa-square-facebook',
+      url: ''
+    },
+    {
+      icon: 'fa-brands fa-tiktok',
+      url: ''
+    },
+    {
+      icon: 'fa-brands fa-instagram',
+      url: ''
+    },
+    {
+      icon: 'fa-brands fa-youtube',
+      url: ''
+    },
+  ]
 };

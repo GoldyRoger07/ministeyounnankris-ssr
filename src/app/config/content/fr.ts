@@ -27,9 +27,30 @@ export const fr: SiteContent = {
   },
 
   footer: {
-    tagline: 'Un réseau de centres au service de nos équipes et de nos clients.',
+    tagline: 'Ministè Youn Nan Kris rassemble des croyants, chorales, musiciens et serviteurs autour d\'une même mission : louer Dieu, annoncer l\'Évangile, grandir dans la prière et servir notre communauté.',
     rights: 'Tous droits réservés.',
     contact: 'Nous contacter',
+    legalContent: {
+      label: 'Informations légales',
+      links: [
+        {
+          label: 'Mentions légales',
+          url: ''
+        },
+        {
+          label: 'Politique de confidentialité',
+          url: ''
+        },
+        {
+          label: 'Politique de cookies',
+          url: ''
+        },
+        {
+          label: 'Conditions générales',
+          url: ''
+        }
+      ]
+    }
   },
 
   home: {
@@ -167,17 +188,33 @@ export const fr: SiteContent = {
       cards:[
         {
           title: 'Concert de louange',
-          desc: 'Date / lieu'
+          desc: '12/04/2021, Petion-Ville, Rue Faubert',
+          image:{
+            url: '/img/events/event-1.webp',
+            alt: ''
+          }
         },
         {
           title: 'Veillée de prière',
-          desc: ''
+          desc: '12/04/2021, Petion-Ville, Rue Faubert',
+          image:{
+            url: '/img/events/event-2.webp',
+            alt: ''
+          }
         },{
           title: 'Réveil spirituel',
-          desc: ''
+          desc: '12/04/2021, Petion-Ville, Rue Faubert',
+          image:{
+            url: '/img/events/event-3.webp',
+            alt: ''
+          }
         },{
           title: 'Retraite spirituelle',
-          desc: ''
+          desc: '12/04/2021, Petion-Ville, Rue Faubert',
+          image:{
+            url: '/img/events/event-4.webp',
+            alt: ''
+          }
         }
       ],
       cta1: {
@@ -188,27 +225,52 @@ export const fr: SiteContent = {
     formationSection: {
       title: 'Grandir dans la foi',
       subtitle: 'Découvrez nos enseignements et formations conçus pour accompagner votre croissance spirituelle.',
-      cards: [
+      formationCards: [
         {
-          title: 'Comprendre la louange',
-          desc: ''
+          cover: '/img/formations/01.jpg',
+          category: 'FONDEMENTS BIBLIQUES',
+          title: 'Les fondements de la foi chrétienne',
+          shortDescription: 'Découvrir les bases de la foi en Jésus-Christ.',
+          level: 'Débutant',
+          duration: '6 SEMAINES'
         },
+
         {
-          title: 'Évangélisation',
-          desc: ''
+          cover: '/img/formations/02.jpg',
+          category: 'ÉTUDES BIBLIQUES',
+          title: 'Comprendre et étudier la Parole de Dieu',
+          shortDescription: 'Approfondir la compréhension des Écritures.',
+          level: 'Intermédiaire',
+          duration: '8 SEMAINES'
         },
+
         {
-          title: 'Développer sa vie de prière',
-          desc: ''
+          cover: '/img/formations/03.jpg',
+          category: 'VIE SPIRITUELLE',
+          title: 'La puissance de la prière et du jeûne',
+          shortDescription: 'Développer une communion profonde avec Dieu.',
+          level: 'Débutant',
+          duration: '4 SEMAINES'
         },
+
         {
-          title: 'Formation musicale',
-          desc: ''
+          cover: '/img/formations/04.jpg',
+          category: 'LEADERSHIP CHRÉTIEN',
+          title: 'Devenir un leader selon le cœur de Dieu',
+          shortDescription: 'Apprendre à diriger avec humilité et sagesse.',
+          level: 'Avancé',
+          duration: '10 SEMAINES'
         },
+
         {
-          title: 'Discipulat',
-          desc: ''
+          cover: '/img/formations/05.jpg',
+          category: 'ÉVANGÉLISATION',
+          title: 'Partager l’Évangile et faire des disciples',
+          shortDescription: 'Témoigner de sa foi et accompagner les autres.',
+          level: 'Débutant',
+          duration: '6 SEMAINES'
         },
+        
       ],
       cta1: {
         label: 'Voir les formations',
@@ -219,13 +281,15 @@ export const fr: SiteContent = {
       title: 'Besoin de prière ?',
       desc: 'Vous traversez une situation difficile ou souhaitez simplement confier un sujet à Dieu ? Notre équipe est disponible pour prier avec vous.',
       title2: 'Envoyer une demande de prière',
+      desc2: 'Remplissez le formulaire ci-dessous, cela ne prendra que deux petites minutes',
       formulaire: {
-        nom: 'Nom',
-        email: 'Email',
-        telephone: 'téléphone',
-        sujet: 'Sujet de prière',
-        message: 'Message',
-        option: 'Je souhaite que ma demande reste confidentielle.'
+        nom: {label:'Nom', placeholder: 'Entrez votre nom complet'},
+        email: {label:'Email', placeholder: 'Entrez votre email'},
+        telephone: {label:'Tel', placeholder: 'Entrez votre numero de telephone'},
+        sujet: {label:'Sujet', placeholder: 'Entrez le sujet de la demande'},
+        message: {label:'Message', placeholder: 'Entrez les details de la demande'},
+        option: 'Je souhaite que ma demande reste confidentielle.',
+        cta: {label: 'Envoyer ma demande', url: '/'}
       }
     },
     mediaSection: {

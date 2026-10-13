@@ -32,11 +32,21 @@ export interface Card{
 
 }
 
+export interface FormationCard{
+  cover: string
+  category: string
+  title: string
+  shortDescription: string
+  level: string
+  duration: string
+}
+
 export interface Section{
   title?: string
   subtitle?: string
   desc?: string
   cards?: Card[]
+  formationCards?: FormationCard[]
   cta1?: LinkItem
   cta2?: LinkItem
   content?:{
@@ -44,6 +54,11 @@ export interface Section{
         subtitle: string
         desc: string
   }[]
+}
+
+export interface FormInputContent{
+  label: string
+  placeholder: string
 }
 
 /** Pages qui ont leur propre bloc `seo` (clé `data.seo` des routes). */
@@ -73,6 +88,10 @@ export interface SiteContent {
     tagline: string;
     rights: string;
     contact: string;
+    legalContent:{
+      label: string
+      links: LinkItem[]
+    }
   };
 
   home: {
@@ -97,13 +116,15 @@ export interface SiteContent {
       title: string
       desc: string
       title2: string
+      desc2: string
       formulaire:{
-        nom: string
-        email: string
-        telephone: string
-        sujet: string
-        message: string
+        nom: FormInputContent
+        email: FormInputContent
+        telephone: FormInputContent
+        sujet: FormInputContent
+        message: FormInputContent
         option: string
+        cta: LinkItem
       }
     }
 
@@ -111,6 +132,8 @@ export interface SiteContent {
 
     lastCtaSection: Section
   };
+
+
 
 
   about:{

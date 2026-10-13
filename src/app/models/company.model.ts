@@ -4,6 +4,7 @@ export interface Company {
   legalName: string;
   logo: Logo;
   contact: Contact;
+  socials: SocialLinkItem[]
 }
 
 export interface Logo {
@@ -12,7 +13,19 @@ export interface Logo {
 }
 
 export interface Contact {
-  email: string;
-  phone: string;
-  address: string;
+  email: ContactItem;
+  phone: ContactItem;
+  address: ContactItem;
+}
+
+export interface SocialLinkItem{
+  icon: string
+  label?: string
+  url: string
+}
+
+export interface ContactItem{
+  icon: string
+  content: string
+  label?: string
 }

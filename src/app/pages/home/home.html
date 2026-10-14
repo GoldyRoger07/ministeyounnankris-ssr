@@ -1,17 +1,17 @@
 
 
 <!-- <my-hero></my-hero> -->
- <section class="h-screen pt-10 text-gray-700">
+ <section class="min-h-screen pt-10 pb-10 text-gray-700 flex items-center justify-center">
      <my-container>
         <div class="flex justify-center items-center">
 
-            <div class="flex flex-col gap-2 items-center text-center w-1/2">
-               <h1 class="font-extrabold text-5xl">{{content().heroSection.title}}</h1>
-               <p class="font-normal text-md">{{content().heroSection.desc}}</p>
-               <div class="flex items-center gap-2">
+            <div class="flex flex-col gap-4 items-center text-center w-full md:w-3/4 lg:w-4/5">
+               <h1 class="font-extrabold text-4xl sm:text-8xl">{{content().heroSection.title}}</h1>
+               <p data-reveal class="font-semibold text-xl">{{content().heroSection.desc}}</p>
+               <div data-reveal class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
                    <!-- <button class="cursor-pointer p-5 border border-red-500 rounded-2xl shadow-xl bg-linear-to-b from-red-500 via-red-400 to-gray-100 text-white">{{content().heroSection.cta1?.label}}</button> -->
-                   <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().whoWeAreSection.cta1?.label}}</button>
-                   <button class="font-bold cursor-pointer p-5  rounded-2xl bg-blue-400  text-white">{{content().heroSection.cta2?.label}}</button>
+                   <button class="font-bold cursor-pointer p-4 sm:p-5 rounded-2xl bg-amber-500 text-white">{{content().whoWeAreSection.cta1?.label}}</button>
+                   <button class="font-bold cursor-pointer p-4 sm:p-5 rounded-2xl bg-blue-400  text-white">{{content().heroSection.cta2?.label}}</button>
                </div>
             </div>
         </div>
@@ -22,16 +22,16 @@
  <section class="min-h-50 -bg-linear-180 from-white to-amber-100 py-10">
     <my-container>
         <div class="flex flex-col gap-5 items-center">
-            <div class="mx-auto flex flex-col gap-2.5 items-center text-center w-3/4">
-                <span class="text-red-700 font-extrabold text-xs">{{content().whoWeAreSection.title}}</span>
-                <h2 class="text-gray-700 text-3xl font-extrabold ">{{content().whoWeAreSection.subtitle}}</h2>
-                <p class="text-sm">{{content().whoWeAreSection.desc}}</p>
-                <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().whoWeAreSection.cta1?.label}}</button>
+            <div class="mx-auto flex flex-col gap-2.5 items-center text-center w-full md:w-3/4">
+                <span data-reveal class="text-red-700 font-extrabold text-xs">{{content().whoWeAreSection.title}}</span>
+                <h2 class="text-gray-700 text-2xl sm:text-3xl font-extrabold ">{{content().whoWeAreSection.subtitle}}</h2>
+                <p data-reveal class="text-sm">{{content().whoWeAreSection.desc}}</p>
+                <button data-reveal class="font-bold cursor-pointer p-4 sm:p-5 rounded-2xl bg-amber-500 text-white w-full sm:w-auto">{{content().whoWeAreSection.cta1?.label}}</button>
             </div>
 
-            <div>
+            <div data-reveal>
                 <!-- <img src="/img/home/Open French Bible with Golden Edges.png" alt="Open French Bible with Golden Edges"> -->
-                <img src="/img/home/United in Kingdom Growth.png" alt="United in Kingdom Growth">
+                <img src="/img/mynk-logo.svg" alt="logo Ministe Youn Nan Kris" class="w-70 h-auto">
             </div>
         </div>
     </my-container>
@@ -39,48 +39,48 @@
 
   <section class=" bg-gray-100 p-2.5 ">
     <div class="grid min-[707px]:grid-cols-2 gap-2.5 h-full">
-           
-            <div class="pt-5 h-screen flex flex-col items-center text-center bg-cover bg-center " style="background-image: linear-gradient(to bottom, rgb(0, 0, 30) , rgb(0, 0, 30), transparent 50%),url('/img/home/Milky Way Lighthouse Glow.webp');">
-                <div class="flex flex-col items-center text-center w-3/4">
 
-                    <span class="text-red-700 font-extrabold text-xs">{{content().visionAndMissionSection?.content?.[0].title}}</span>
+            <div class="pt-5 px-4 min-h-[80vh] min-[707px]:h-screen flex flex-col items-center text-center bg-cover bg-center " style="background-image: linear-gradient(to bottom, rgb(0, 0, 30) , rgb(0, 0, 30), transparent 50%),url('/img/home/Milky Way Lighthouse Glow.webp');">
+                <div class="flex flex-col items-center text-center w-full sm:w-3/4">
+
+                    <span data-reveal class="text-red-700 font-extrabold text-xs">{{content().visionAndMissionSection?.content?.[0].title}}</span>
                     <h2 class="text-gray-200 text-xl font-extrabold">{{content().visionAndMissionSection?.content?.[0].subtitle}}</h2>
-                    <p class="text-gray-300 text-sm">{{content().visionAndMissionSection?.content?.[0].desc}}</p>
+                    <p data-reveal class="text-gray-300 text-sm">{{content().visionAndMissionSection?.content?.[0].desc}}</p>
                 </div>
 
                 <!-- <img src="/img/home/Golden Lighthouse at Sunrise.png" alt="Golden Lighthouse at Sunrise"> -->
             </div>
 
-            <div class="pt-5 h-screen flex flex-col items-center text-center bg-cover " style="background-image: linear-gradient(to bottom, white , white, transparent 50%),url('/img/home/Walking Toward the Light Gate.webp'); background-position: 0% 55%;">
-                <div class="flex flex-col items-center text-center w-3/4">
+            <div class="pt-5 px-4 min-h-[80vh] min-[707px]:h-screen flex flex-col items-center text-center bg-cover " style="background-image: linear-gradient(to bottom, white , white, transparent 50%),url('/img/home/Walking Toward the Light Gate.webp'); background-position: 0% 55%;">
+                <div class="flex flex-col items-center text-center w-full sm:w-3/4">
 
-                    <span class="text-red-700 font-extrabold text-xs">{{content().visionAndMissionSection?.content?.[1].title}}</span>
+                    <span data-reveal class="text-red-700 font-extrabold text-xs">{{content().visionAndMissionSection?.content?.[1].title}}</span>
                     <h2 class="text-gray-700 text-xl font-extrabold">{{content().visionAndMissionSection?.content?.[1].subtitle}}</h2>
-                    <p class="text-sm">{{content().visionAndMissionSection?.content?.[1].desc}}</p>
+                    <p data-reveal class="text-sm">{{content().visionAndMissionSection?.content?.[1].desc}}</p>
                 </div>
 
                 <!-- <img src="/img/home/5aae2f8c-42b5-4a2b-888a-62c78d0620da.png" alt="Golden Lighthouse at Sunrise"> -->
             </div>
-            
+
         </div>
  </section>
 
 <section class=" bg-gray-100 min-h-100 py-5">
     <my-container>
         <div class="flex flex-col gap-5 items-center mb-5">
-            <div class="mx-auto flex flex-col gap-2.5 items-center text-center w-3/4">
-                
-                <h2 class="text-gray-700 text-3xl font-extrabold ">{{content().nosPilierSection.title}}</h2>
+            <div class="mx-auto flex flex-col gap-2.5 items-center text-center w-full md:w-3/4">
+
+                <h2 class="text-gray-700 text-2xl sm:text-3xl font-extrabold ">{{content().nosPilierSection.title}}</h2>
                 <!-- <p class="text-sm">{{content().whoWeAreSection.desc}}</p> -->
                 <!-- <button class="font-bold cursor-pointer p-5  rounded-2xl bg-linear-to-b from-red-500 via-amber-500 to-amber-200 text-white">{{content().whoWeAreSection.cta1?.label}}</button> -->
             </div>
 
-            
+
         </div>
     </my-container>
-    <div class="grid min-[460px]:grid-cols-2 min-[910px]:grid-cols-3 gap-2.5 w-full overflow-x-auto px-2.5">
+    <div class="grid min-[460px]:grid-cols-2 min-[910px]:grid-cols-3 gap-2.5 w-full px-2.5">
                 @for(card of content().nosPilierSection.cards; track $index){
-                    <div class="aspect-square bg-white hover:bg-amber-300 transition-all ease-in duration-150 flex flex-col gap-2 items-center justify-center p-2.5 text-center">
+                    <div data-reveal class="min-h-60 min-[460px]:aspect-square bg-white hover:bg-amber-300 transition-colors ease-in duration-150 flex flex-col gap-2 items-center justify-center p-4 text-center">
                         <i class="text-4xl min-[768px]:text-5xl">{{card.icon}}</i>
                         <h3 class="font-bold text-md text-gray-700">{{card.title}}</h3>
                         <p class="text-sm text-gray-600 min-[768px]:w-3/4">{{card.desc}}</p>
@@ -89,47 +89,49 @@
     </div>
 </section>
 
-<section class="communaute-section bg-cover min-h-70 py-5 flex items-center justify-center">
+<section class="communaute-section bg-cover min-h-70 py-10 flex items-center justify-center">
     <!-- <my-container> -->
-           <div class="flex justify-center items-center mb-5 w-full h-full">
-                <div class=" flex flex-col gap-5 items-center text-center w-3/4">
-                    
-                    <h2 class="text-gray-700 text-3xl font-extrabold ">{{content().uneCommunauteUnieSection.title}}</h2>
+           <div class="flex justify-center items-center w-full h-full">
+                <div class=" flex flex-col gap-8 items-center text-center w-full px-4 md:w-3/4 md:px-0">
+
+                    <h2 class="text-gray-700 text-2xl sm:text-3xl font-extrabold ">{{content().uneCommunauteUnieSection.title}}</h2>
                     <!-- <p class="text-sm">{{content().whoWeAreSection.desc}}</p> -->
                     <!-- <button class="font-bold cursor-pointer p-5  rounded-2xl bg-linear-to-b from-red-500 via-amber-500 to-amber-200 text-white">{{content().whoWeAreSection.cta1?.label}}</button> -->
-                    <div class="flex flex-col gap-7.5 min-[861px]:flex-row justify-between  items-center w-full">
+                    <div class="grid grid-cols-2 min-[861px]:grid-cols-4 gap-x-5 gap-y-7.5 w-full">
                         @for(card2 of content().uneCommunauteUnieSection.cards; track $index){
-                            <div class="flex flex-col justify-center items-center text-center text-gray-700">
-                                <span class="font-extrabold text-5xl">{{card2.desc}}</span>
-                                <span class="font-bold text-md text-nowrap">{{card2.title}}</span>
+                            <div data-reveal class="flex flex-col justify-center items-center text-center text-gray-700">
+                                <span [attr.data-counter]="card2.noCounter ? null : ''" class="font-extrabold text-4xl sm:text-5xl tabular-nums">{{card2.desc}}</span>
+                                <span class="font-bold text-sm sm:text-md">{{card2.title}}</span>
                             </div>
                         }
                     </div>
                 </div>
-            </div> 
+            </div>
     <!-- </my-container> -->
-    
+
 </section>
 
-<section class="py-10 min-h-120 overflow-hidden relative bg-white ">
-    <img src="/img/line.svg" class="z-10 absolute top-5" alt="line">
+<section #choralesSection class="py-10 min-h-100 sm:min-h-120 overflow-hidden relative bg-white ">
+    <svg class="z-10 absolute left-0 top-5 w-full h-auto" viewBox="0 0 1440 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path #choralesLine pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M-5 414.573C748.145 299.243 912.317 239.279 878.634 103.752C844.952 -31.7739 705.673 17.1519 708.523 103.752C712.618 228.188 981.741 263.433 1484 3.99805" stroke="#8ec5ff" stroke-width="9"/>
+    </svg>
     <div class="absolute w-full left-0 top-1/10 z-30 flex flex-col items-center gap-5">
-        <h2 class="text-gray-700 text-3xl font-extrabold overflow-hidden">{{content().choralesAndGroupSection.title}}</h2>
-        
-        <infinite-horizontal-scroll></infinite-horizontal-scroll>
+        <h2 class="text-gray-700 text-2xl sm:text-3xl font-extrabold overflow-hidden text-center px-4">{{content().choralesAndGroupSection.title}}</h2>
+
+        <infinite-horizontal-scroll class="block w-full"></infinite-horizontal-scroll>
     </div>
 </section>
 
 <section class="min-h-[70vh] bg-linear-to-b from-white to-amber-400 py-10">
     <my-container>
         <div class="flex flex-col items-center gap-5">
-            <div class="mb-10">
-                <h2 class="text-3xl font-bold text-gray-700">{{content().evenementSection.title}}</h2>
+            <div class="mb-5 sm:mb-10 text-center">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-700">{{content().evenementSection.title}}</h2>
             </div>
 
-            <div class="grid grid-cols-4 gap-2 ">
+            <div class="grid grid-cols-1 min-[460px]:grid-cols-2 lg:grid-cols-4 gap-2 w-full">
                 @for(card4 of content().evenementSection.cards; track $index){
-                    <div class="relative bg-cover aspect-square overflow-hidden flex items-end group" >
+                    <div data-reveal class="relative bg-cover aspect-square overflow-hidden flex items-end group" >
                         <img [src]="card4.image?.url" [alt]="card4.image?.alt" class="object-cover h-full w-full group-hover:scale-110 duration-1000 ease-in-out transition-transform">
                         <div class="absolute top-0 left-0 w-full h-full z-5 flex flex-col justify-end px-5 py-2.5 bg-linear-to-b from-transparent to-white">
                             <span class="font-bold text-gray-700">{{card4.title}}</span>
@@ -139,7 +141,7 @@
                 }
             </div>
 
-            <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().evenementSection.cta1?.label}}</button>
+            <button data-reveal class="font-bold cursor-pointer p-4 sm:p-5 rounded-2xl bg-amber-500 text-white w-full sm:w-auto">{{content().evenementSection.cta1?.label}}</button>
         </div>
     </my-container>
 </section>
@@ -147,22 +149,22 @@
 <section class="min-h-[70vh] bg-linear-to-b from-amber-400 to-white py-10">
     <my-container>
         <div class="flex flex-col items-center gap-5">
-            <div class="mb-10 text-center w-3/4">
-                <h2 class="text-3xl font-bold text-gray-700">{{content().formationSection.title}}</h2>
-                <p class="text-xl text-gray-600">{{content().formationSection.subtitle}}</p>
+            <div class="mb-5 sm:mb-10 text-center w-full md:w-3/4">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-700">{{content().formationSection.title}}</h2>
+                <p data-reveal class="text-base sm:text-xl text-gray-600">{{content().formationSection.subtitle}}</p>
             </div>
 
             <div class="flex flex-col gap-5 w-full">
                 @for(card4 of content().formationSection.formationCards; track $index){
-                    <div class="bg-white/25 w-full grid grid-cols-[150px_1fr] gap-5 p-5 cursor-pointer">
+                    <div data-reveal class="bg-white/25 w-full grid grid-cols-[88px_1fr] sm:grid-cols-[150px_1fr] gap-3 sm:gap-5 p-3 sm:p-5 cursor-pointer">
                        <img [src]="card4.cover" class="aspect-square object-cover object-center" alt="">
-                        <div class="flex flex-col justify-between">
-                            <div class="flex flex-col gap-2">
+                        <div class="flex flex-col gap-2 justify-between">
+                            <div class="flex flex-col gap-1 sm:gap-2">
 
                                 <span class="text-amber-500 font-bold text-xs">{{card4.category}}</span>
-                                <span class="font-bold text-gray-700 text-xl">{{card4.title}}</span>
+                                <span class="font-bold text-gray-700 text-base sm:text-xl">{{card4.title}}</span>
                             </div>
-                            <div class="flex items-center gap-5 text-sm text-gray-600">
+                            <div class="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm text-gray-600">
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-signal"></i>
                                     <span>{{card4.level}}</span>
@@ -172,84 +174,86 @@
                                     <span>{{card4.duration}}</span>
                                 </div>
                             </div>
-                            <p class="text-gray-600">{{card4.shortDescription}}</p>
+                            <p class="text-sm sm:text-base text-gray-600">{{card4.shortDescription}}</p>
                             <!-- <span class="text-xs text-gray-600">{{card4.desc}}</span> -->
                         </div>
                     </div>
                 }
             </div>
 
-            <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().formationSection.cta1?.label}}</button>
+            <button data-reveal class="font-bold cursor-pointer p-4 sm:p-5 rounded-2xl bg-amber-500 text-white w-full sm:w-auto">{{content().formationSection.cta1?.label}}</button>
         </div>
     </my-container>
 </section>
 
-<section class="py-10 min-h-170 bg-cover bg-bottom-left" style="background-image: url('/img/home/Serene Prayer Beside an Open Bible.webp');">
-    <div class="flex flex-col items-end w-full">
-        <div class="mb-10 text-center w-2/4 flex flex-col ">
-                <h2 class="text-3xl font-bold text-gray-700 w-3/4">{{content().prayerSection.title}}</h2>
-                <p class="text-md text-gray-600 w-3/4">{{content().prayerSection.desc}}</p>
-        </div>
-        <div class="flex flex-col w-1/2 ">
-            <h3 class="font-bold text-gray-700">{{content().prayerSection.title2}}</h3>
-            <p class="text-sm text-gray-500">{{content().prayerSection.desc2}}</p>
-            <form class="flex flex-col gap-3 my-10 w-3/4">
-                <div class="flex flex-col gap-2">
+<section class="py-10 min-h-170 bg-cover bg-center md:bg-bottom-left" style="background-image: linear-gradient(to bottom,  transparent 80%, white),url('/img/home/Serene Prayer Beside an Open Bible.webp');">
+    <div class="flex flex-col items-center md:items-end w-full px-4 md:px-0">
+        <div class="flex flex-col items-center md:items-start w-full md:w-1/2 bg-white/85 md:bg-transparent p-5 md:p-0">
+            <div class="mb-6 md:mb-10 text-center w-full lg:w-3/4 flex flex-col">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-700">{{content().prayerSection.title}}</h2>
+                    <p data-reveal class="text-md text-gray-600">{{content().prayerSection.desc}}</p>
+            </div>
+            <div class="flex flex-col w-full lg:w-3/4">
+                <h3 data-reveal class="font-bold text-gray-700">{{content().prayerSection.title2}}</h3>
+                <p data-reveal class="text-sm text-gray-500">{{content().prayerSection.desc2}}</p>
+                <form data-reveal class="flex flex-col gap-3 my-6 md:my-10 w-full">
+                    <div class="flex flex-col gap-2">
 
-                    <label>{{content().prayerSection.formulaire.nom.label}}</label>
-                    <input type="text" [placeholder]="content().prayerSection.formulaire.nom.placeholder" class="border border-gray-300 p-2">
-                </div>
+                        <label>{{content().prayerSection.formulaire.nom.label}}</label>
+                        <input type="text" [placeholder]="content().prayerSection.formulaire.nom.placeholder" class="border border-gray-300 p-2 w-full">
+                    </div>
 
-                <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-2">
 
-                    <label>{{content().prayerSection.formulaire.email.label}}</label>
-                    <input type="email" [placeholder]="content().prayerSection.formulaire.email.placeholder" class="border border-gray-300 p-2">
-                </div>
+                        <label>{{content().prayerSection.formulaire.email.label}}</label>
+                        <input type="email" [placeholder]="content().prayerSection.formulaire.email.placeholder" class="border border-gray-300 p-2 w-full">
+                    </div>
 
-                <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-2">
 
-                    <label>{{content().prayerSection.formulaire.telephone.label}}</label>
-                    <input type="tel" [placeholder]="content().prayerSection.formulaire.telephone.placeholder" class="border border-gray-300 p-2">
-                </div>
+                        <label>{{content().prayerSection.formulaire.telephone.label}}</label>
+                        <input type="tel" [placeholder]="content().prayerSection.formulaire.telephone.placeholder" class="border border-gray-300 p-2 w-full">
+                    </div>
 
-                <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-2">
 
-                    <label>{{content().prayerSection.formulaire.sujet.label}}</label>
-                    <input type="text" [placeholder]="content().prayerSection.formulaire.sujet.placeholder" class="border border-gray-300 p-2">
-                </div>
+                        <label>{{content().prayerSection.formulaire.sujet.label}}</label>
+                        <input type="text" [placeholder]="content().prayerSection.formulaire.sujet.placeholder" class="border border-gray-300 p-2 w-full">
+                    </div>
 
-                <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-2">
 
-                    <label>{{content().prayerSection.formulaire.message.label}}</label>
-                    <textarea type="email" [placeholder]="content().prayerSection.formulaire.message.placeholder" class="border border-gray-300 p-2"></textarea>
-                </div>
+                        <label>{{content().prayerSection.formulaire.message.label}}</label>
+                        <textarea [placeholder]="content().prayerSection.formulaire.message.placeholder" class="border border-gray-300 p-2 w-full"></textarea>
+                    </div>
 
-                <div class="flex items-center gap-2">
+                    <div class="flex items-start gap-2">
 
-                    <input type="checkbox" class="border border-gray-300 p-2">
-                    <label>{{content().prayerSection.formulaire.option}}</label>
-                </div>
+                        <input type="checkbox" class="border border-gray-300 p-2 mt-1">
+                        <label>{{content().prayerSection.formulaire.option}}</label>
+                    </div>
 
-                <button class="font-bold cursor-pointer p-5  rounded-2xl bg-amber-500 text-white">{{content().prayerSection.formulaire.cta?.label}}</button>
-            </form>
+                    <button class="font-bold cursor-pointer p-4 sm:p-5 rounded-2xl bg-amber-500 text-white">{{content().prayerSection.formulaire.cta?.label}}</button>
+                </form>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="h-100 bg-cover bg-bottom-right" style="background-image: url('/img/home/Sunlit Cross Over Misty Hills.webp');">
-    <div class="w-full h-full  flex items-center justify-center">
-        <div class="h-fit w-3/4">
-            <div class="mb-10 text-center flex flex-col items-center">
-                    <h2 class="text-3xl font-bold text-gray-700">{{content().lastCtaSection.title}}</h2>
-                    <p class="text-xl text-gray-600 w-3/4">{{content().lastCtaSection.desc}}</p>
+<section class="min-h-100 py-10 bg-cover bg-bottom-right" style="background-image: linear-gradient(to bottom, white 1%, transparent, transparent),url('/img/home/Sunlit Cross Over Misty Hills.webp');">
+    <div class="w-full min-h-80 flex items-center justify-center">
+        <div class="h-fit w-full px-4 md:w-3/4 md:px-0">
+            <div class="mb-6 sm:mb-10 text-center flex flex-col items-center">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-700">{{content().lastCtaSection.title}}</h2>
+                    <p data-reveal class="text-base sm:text-xl text-gray-600 w-full md:w-3/4">{{content().lastCtaSection.desc}}</p>
             </div>
-            <div class="flex justify-center items-center gap-2">
+            <div data-reveal class="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-2">
                    <!-- <button class="cursor-pointer p-5 border border-red-500 rounded-2xl shadow-xl bg-linear-to-b from-red-500 via-red-400 to-gray-100 text-white">{{content().heroSection.cta1?.label}}</button> -->
-                   <button class="font-bold cursor-pointer py-5 px-7.5 rounded-2xl bg-amber-500 text-white">
+                   <button class="font-bold cursor-pointer py-4 sm:py-5 px-7.5 rounded-2xl bg-amber-500 text-white">
                         <i class="fa-solid fa-user-plus"></i>
                         {{content().lastCtaSection.cta1?.label}}
                     </button>
-                   <button class="font-bold cursor-pointer py-5 px-7.5  rounded-2xl bg-blue-400  text-white">
+                   <button class="font-bold cursor-pointer py-4 sm:py-5 px-7.5  rounded-2xl bg-blue-400  text-white">
                         <i class="fa-solid fa-phone"></i>
                         {{content().lastCtaSection.cta2?.label}}
                     </button>
@@ -258,4 +262,3 @@
         </div>
     </div>
 </section>
-

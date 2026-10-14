@@ -1,67 +1,68 @@
-<footer class="border-t border-gray-200 bg-gray-50 py-10">
+<footer class="border-t border-gray-200 bg-gray-50 pt-16 pb-8">
   <my-container>
-    <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-      <div class="flex flex-col gap-3">
+    <div class="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr] md:gap-10">
+      <!-- Marque -->
+      <div class="flex flex-col gap-5">
         <a [routerLink]="language.localize('/')" class="w-fit flex items-center gap-2">
-          <img [src]="company().logo.light" class="h-10 w-auto" [alt]="company().name" />
+          <img [src]="company().logo.light" class="h-12 w-auto" [alt]="company().name" />
           <div class="flex flex-col font-bold text-xs  items-center text-center">
                 <span class="text-red-500 uppercase">Ministe</span>
                 <span class="uppercase -translate-y-1">Youn Nan Kris</span>
           </div>
         </a>
-        <p class="max-w-sm text-sm text-(--brand-muted)">{{ content().tagline }}</p>
-      </div>
+        <p class="max-w-sm text-sm leading-relaxed text-(--brand-muted)">{{ content().tagline }}</p>
 
-      @if (company().contact.email) {
-        <div>
-          <span class="font-bold text-gray-700"> {{ content().contact }}</span>
-          <div class="flex flex-col gap-2 text-sm">
-            <!-- @for(contactLink of company().contact.links; track $index){ -->
-              <a [href]="'mailto:' +company().contact.email.content">
-                <i [class]="company().contact.email.icon"></i>
-                {{ company().contact.email.content }}
-              </a>
-
-              <a [href]="'tel:' +company().contact.phone.content">
-                <i [class]="company().contact.phone.icon"></i>
-                {{ company().contact.phone.label }}
-              </a>
-
-              <!-- <a [href]="'what:' +company().contact.phone.content">
-                <i [class]="company().contact.phone.icon"></i>
-                {{ company().contact.phone.label }}
-              </a> -->
-            <!-- } -->
-          </div>
-        </div>
-        <!-- <a
-          [href]="'mailto:' + company().contact.email"
-          class="text-sm font-semibold text-(--brand-primary) hover:underline"
-        >
-          {{ content().contact }}  
-        </a> -->
-      }
-
-      <div>
-        <span class="font-bold text-gray-700">{{content().legalContent.label}}</span>
-        <div class="flex flex-col gap-2">
-          @for(legalLink of content().legalContent.links; track $index){
-            <a href="#">{{legalLink.label}}</a>
+        <div class="flex items-center gap-2.5">
+          @for(socialLink of company().socials; track $index){
+            <a [href]="socialLink.url" class="flex size-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-colors hover:border-amber-500 hover:bg-amber-500 hover:text-white">
+              <i [class]="socialLink.icon" aria-hidden="true"></i>
+            </a>
           }
         </div>
+      </div>
+
+      <!-- Contact -->
+      @if (company().contact.email) {
+        <div class="flex flex-col gap-5">
+          <span class="text-xs font-bold uppercase tracking-[0.2em] text-gray-800">{{ content().contact }}</span>
+          <div class="flex flex-col gap-3 text-sm text-gray-600">
+            <a [href]="'mailto:' +company().contact.email.content" class="group flex items-center gap-3 transition-colors hover:text-amber-600">
+              <span class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white text-amber-500 shadow-sm ring-1 ring-gray-200 transition-colors group-hover:bg-amber-500 group-hover:text-white">
+                <i [class]="company().contact.email.icon" aria-hidden="true"></i>
+              </span>
+              <span class="break-all">{{ company().contact.email.content }}</span>
+            </a>
+
+            <a [href]="'tel:' +company().contact.phone.content" class="group flex items-center gap-3 transition-colors hover:text-amber-600">
+              <span class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white text-amber-500 shadow-sm ring-1 ring-gray-200 transition-colors group-hover:bg-amber-500 group-hover:text-white">
+                <i [class]="company().contact.phone.icon" aria-hidden="true"></i>
+              </span>
+              {{ company().contact.phone.label }}
+            </a>
+          </div>
+        </div>
+      }
+
+      <!-- Informations légales -->
+      <div class="flex flex-col gap-5">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-gray-800">{{content().legalContent.label}}</span>
+        <ul class="flex flex-col gap-3 text-sm text-gray-600">
+          @for(legalLink of content().legalContent.links; track $index){
+            <li>
+              <a href="#" class="transition-colors hover:text-amber-600">{{legalLink.label}}</a>
+            </li>
+          }
+        </ul>
       </div>
     </div>
 
-    <div class="flex items-center justify-between pt-5">
-      <div class="flex items-center gap-5">
-          @for(socialLink of company().socials; track $index){
-            <a [href]="socialLink.url">
-              <i [class]="socialLink.icon"></i>
-            </a>
-          }
-      </div>
-      <p class=" text-xs text-(--brand-muted)">
+    <div class="mt-14 flex flex-col items-center gap-3 border-t border-gray-200 pt-6 text-center text-xs text-(--brand-muted) md:flex-row md:justify-between md:text-left">
+      <p>
         © {{ year }} {{ company().legalName }}. {{ content().rights }}
+      </p>
+      <p>
+        {{ content().credit.label }}
+        <a [href]="content().credit.url" target="_blank" rel="noopener" class="font-semibold text-gray-700 underline decoration-gray-300 underline-offset-4 transition-colors hover:text-amber-600 hover:decoration-amber-500">{{ content().credit.name }}</a>
       </p>
     </div>
   </my-container>

@@ -1,0 +1,62 @@
+/* Appel à l'action : fond quasi noir chaud, éclairé par une barre LED néon orange, sous un grain de bruit. */
+.cta-glow {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: #0d0501;
+    background-image: radial-gradient(60% 60% at 50% 0%, rgb(251 146 60 / 0.7), rgb(234 88 12 / 0.25) 45%, transparent 75%);
+}
+
+/* Barre LED : tube blanc-orange incandescent, dont les ombres superposées forment le halo néon. */
+.cta-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(75%, 760px);
+    height: 4px;
+    transform: translateX(-50%);
+    border-radius: 9999px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, #fdba74 15%, #fff7ed 50%, #fdba74 85%, transparent);
+    box-shadow:
+        0 0 6px 1px rgb(255 237 213 / 0.9),
+        0 0 20px 6px rgb(251 146 60 / 0.9),
+        0 0 60px 20px rgb(249 115 22 / 0.65),
+        0 0 140px 50px rgb(234 88 12 / 0.45),
+        0 0 260px 110px rgb(234 88 12 / 0.25);
+    animation: led-breathe 4s ease-in-out infinite;
+}
+
+/* Bruit généré en SVG (feTurbulence) : aucune image à charger. */
+.cta-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.25;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+}
+
+@keyframes led-breathe {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.75; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cta-glow::before {
+        animation: none;
+    }
+}
+
+/* Bouton principal : halo néon qui s'intensifie au survol. */
+.neon-button {
+    box-shadow: 0 0 12px rgb(251 146 60 / 0.6), 0 0 36px rgb(234 88 12 / 0.45);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.neon-button:hover {
+    box-shadow: 0 0 18px rgb(253 186 116 / 0.85), 0 0 60px rgb(249 115 22 / 0.65);
+}

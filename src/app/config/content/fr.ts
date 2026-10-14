@@ -5,7 +5,7 @@ export const fr: SiteContent = {
 
   nav: [
     { label: 'Accueil', url: '/'},
-    { label: 'À propos', url: '/'},
+    { label: 'À propos', url: '/about-us'},
     { label: 'Nos activités', url: '/'},
     { label: 'Formations', url: '/'},
     { label: 'Médias', url: '/'},
@@ -23,12 +23,18 @@ export const fr: SiteContent = {
     language: 'Langue',
     actions: {
       askForPraye: { label: "Demande de prière", url: '/prayer-request' },
+      donate: { label: 'Faire un don', url: '/donate' },
     },
   },
 
   footer: {
     tagline: 'Ministè Youn Nan Kris rassemble des croyants, chorales, musiciens et serviteurs autour d\'une même mission : louer Dieu, annoncer l\'Évangile, grandir dans la prière et servir notre communauté.',
     rights: 'Tous droits réservés.',
+    credit: {
+      label: 'Conçu et développé par',
+      name: 'Raiki Services',
+      url: 'https://www.raikiservices.com',
+    },
     contact: 'Nous contacter',
     legalContent: {
       label: 'Informations légales',
@@ -60,7 +66,7 @@ export const fr: SiteContent = {
     },
 
     heroSection: {
-      title: 'A Dieu soit la gloire',
+      title: 'A Dieu soit la Gloire',
       desc: 'Ministè Youn Nan Kris rassemble des croyants, chorales, musiciens et serviteurs autour d\'une même mission : louer Dieu, annoncer l\'Évangile, grandir dans la prière et servir notre communauté.',
       cta1:{
         label: 'Découvrir le ministère',
@@ -133,7 +139,8 @@ export const fr: SiteContent = {
       cards: [
         {
           title: 'Année de fondation',
-          desc: '2021'
+          desc: '2021',
+          noCounter: true
         },
         {
           title: 'Membres actifs',
@@ -312,61 +319,65 @@ export const fr: SiteContent = {
 
   about: {
     seo: {
-      title: 'About | SECO Response',
-      description: 'SECO Response, a call center services provider.',
+      title: 'About | Ministe Youn Nan Kris',
+      description: 'Ministe Youn Nan Kris, a call center services provider.',
     },
     heroSection: {
-      title: 'Your Partner for Reliable Business Support and Customer Solutions',
-      description: 'Seco Response helps organizations simplify operations, strengthen customer relationships, and access reliable professional support.',
-      heroImages: [
-        '/secogroupe-centers/about/about-1.webp', 
-        '/secogroupe-centers/about/about-2.webp', 
-        '/secogroupe-centers/about/about-3.webp']
+      subtitle: 'DÉCOUVREZ NOTRE MINISTÈRE',
+      title: 'Unis par la foi, guidés par une même mission.',
+      desc: 'Depuis 2021, Ministè Youn Nan Kris rassemble des chorales, des musiciens et des serviteurs de Dieu autour d\'une même vision : grandir ensemble dans la foi, célébrer Dieu par la louange et contribuer à l\'expansion de Son Royaume.',
+      cta1: {
+        label: 'Découvrir notre mission',
+        url: '#'
+      }
     },
-    section2: {
-      p1: 'We provide flexible business solutions designed to meet the evolving needs of companies, organizations, and entrepreneurs. Our services span customer support, virtual assistance, administrative services, multilingual communication, technical support, business process outsourcing, and specialized operational assistance. By combining skilled professionals with efficient processes and modern technology, we help our clients save time, improve productivity, and deliver better experiences.',
-      p2: 'We work with businesses and organizations across industries, including healthcare, financial services, government, legal, retail, education, e-commerce, and professional services.',
-      p3: 'At Seco Response, we focus on more than simply completing tasks. We aim to become a dependable extension of your team. Our commitment to quality, professionalism, confidentiality, responsiveness, and accountability allows our clients to focus on what they do best while we help manage the support behind the scenes.'
-    },
-    section3: {
-      title: 'Why Seco Response ?',
+    missionAndValueSection: {
+      subtitle: 'CE QUI NOUS ANIME',
+      title: 'Une foi vivante, une mission qui nous rassemble.',
+      desc: 'Notre engagement repose sur la conviction que la foi grandit à travers la prière, la louange, le partage de la Parole de Dieu et le service envers les autres.',
       cards: [
         {
-          icon: 'check',
-          title: 'Reliable Support',
-          desc: 'Professional teams you can depend on.'
+          title: 'Notre mission',
+          desc: 'Créer un espace de prière accueillant et accessible à tous, favoriser la croissance spirituelle et proposer des formations et des ressources qui nourrissent la foi, tout en promouvant l\'amour, la compassion et l\'unité.'
         },
         {
-          icon: 'check',
-          title:'Flexible Solutions',
-          desc: 'Services that can adapt as your organization grows.'
-        },
-        {
-          icon: 'check',
-          title: 'People & Technology',
-          desc: 'The right combination of human expertise and modern tools.'
-        },
-        {
-          icon: 'check',
-          title: 'Quality & Accountability',
-          desc: 'Consistent service with a strong focus on client satisfaction.'
-        },
-        {
-          icon: 'check',
-          title: 'Business-Focused',
-          desc: 'Practical solutions designed to improve efficiency and support growth.'
+          title: 'Notre vision',
+          desc: 'Devenir un phare spirituel pour notre communauté, un lieu physique et virtuel où chacun peut trouver réconfort, inspiration et accompagnement dans son cheminement avec Dieu.'
         }
       ]
     },
-    section4: {
-      title: 'Our Mission',
-      desc1: 'To provide dependable, innovative, and accessible business support solutions that help organizations operate more efficiently, serve their customers better, and achieve sustainable growth.',
-      desc2: 'Seco Response builds a reusable, searchable pool of call-center and business-support talent, and refers qualified, consenting candidates to partner agencies when projects become available. We are not the employer of record for referred candidates - our partner agencies conduct interviews and make all hiring, offer, and compensation decisions.',
-      cta: {
-        content: 'Join Our Network',
-        link: ''
+    fondateurSection: {
+      subtitle: 'À L\'ORIGINE DE NOTRE HISTOIRE',
+      title: 'Une vision portée par des hommes de foi.',
+      desc: 'Fondé le 15 mai 2021, Ministè Youn Nan Kris est né d\'un esprit de collaboration et d\'unité entre plusieurs chorales. Cette initiative, portée par deux fondateurs, a donné naissance à une communauté engagée dans la louange, l\'évangélisation et la croissance spirituelle.',
+      cards: [
+        {
+          title: 'Pasteur Fortuné Lener Junior',
+          desc: 'Cofondateur',
+          image: {
+            url: '/img/about/Elegant Black-Tie Portrait_500.webp'
+          }
+        },
+        {
+          title: 'Maestro Valentin Jean Daniel',
+          desc: 'Cofondateur',
+          image: {
+            url: '/img/about/Maest Val _500.webp'
+          }
+        }
+      ]
+    },
+    callToActionSection: {
+      title: 'Votre place est parmi nous',
+      desc: 'Rejoignez une communauté unie dans la foi, engagée dans la louange, la prière et le service. Ensemble, grandissons spirituellement et contribuons à faire rayonner l\'amour de Dieu.',
+      cta1: {
+        label: 'Rejoindre la communauté',
+        url: ''
       },
-      desc3: 'Seco Response - Supporting Your Business. Empowering Your Growth.'
+      cta2: {
+        label: 'Nous contacter',
+        url: ''
+      }
     }
   },
 

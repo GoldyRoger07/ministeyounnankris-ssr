@@ -29,6 +29,8 @@ export interface Card{
   desc: string
   image?: Image
   icon?: string
+  /** Chiffre clé affiché tel quel, sans effet de compteur (ex. une année). */
+  noCounter?: boolean
 
 }
 
@@ -80,6 +82,7 @@ export interface SiteContent {
     language: string;
     actions: {
       askForPraye: LinkItem;
+      donate: LinkItem;
       // login: LinkItem;
     };
   };
@@ -87,6 +90,12 @@ export interface SiteContent {
   footer: {
     tagline: string;
     rights: string;
+    /** Mention de l'agence qui a réalisé le site, à côté du copyright. */
+    credit: {
+      label: string;
+      name: string;
+      url: string;
+    };
     contact: string;
     legalContent:{
       label: string
@@ -138,37 +147,11 @@ export interface SiteContent {
 
   about:{
     seo: Seo;
-    heroSection:{
-      title: string;
-      description: string;
-      heroImages: string[]
-    }
-    section2: {
-      p1: string
-      p2: string
-      p3: string
-    }
-
-    section3:{
-      title: string
-      cards: {
-        icon: string
-        title: string
-        desc: string
-      }[]
-    }
-
-    section4: {
-      title: string
-      desc1: string
-      desc2: string
-      cta:{
-        content: string
-        link: string
-      }
-
-      desc3: string
-    }
+    heroSection: Section
+    missionAndValueSection: Section
+    fondateurSection: Section
+    callToActionSection: Section
+  
   };
 
   notFound: {

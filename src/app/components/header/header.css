@@ -34,3 +34,47 @@ header.hide-header {
 h1,h2,h3,h4,h5,h6,p,div,span,button,nav, a, select, option{
   font-family: "Poppins", sans-serif !important;
 }
+
+/* Bouton « Faire un don » : doré, halo orange, et reflet oblique qui le balaie toutes les 2,5 s. */
+.donate-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.45),
+    0 6px 18px -6px rgb(249 115 22 / 0.7);
+  text-shadow: 0 1px 1px rgb(154 52 18 / 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.donate-button:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.5),
+    0 10px 26px -6px rgb(249 115 22 / 0.85);
+}
+
+.donate-button::after {
+  content: '';
+  position: absolute;
+  inset: -50% auto -50% 0;
+  z-index: -1;
+  width: 35%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.85), transparent);
+  transform: translateX(-200%) skewX(-25deg);
+  animation: donate-shine 2.5s ease-in-out infinite;
+}
+
+/* Le balayage occupe 40 % du cycle (1 s), le reste est une pause. */
+@keyframes donate-shine {
+  0% { transform: translateX(-200%) skewX(-25deg); }
+  40%, 100% { transform: translateX(400%) skewX(-25deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .donate-button::after {
+    animation: none;
+    opacity: 0;
+  }
+}

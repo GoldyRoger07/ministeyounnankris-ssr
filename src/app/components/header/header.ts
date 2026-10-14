@@ -87,7 +87,7 @@ export class Header {
     }
 
     const current = window.scrollY;
-    this.scrolled.set(current > 12);
+    this.scrolled.set(current > 100);
 
     // Le header reste visible tant que le menu mobile est ouvert.
     if (this.menuOpen()) {
@@ -95,7 +95,7 @@ export class Header {
       return;
     }
 
-    if (current > this.lastScrollY && current > 120) {
+    if (current > this.lastScrollY && current > 900) {
       this.hidden.set(true);
     } else if (current < this.lastScrollY) {
       this.hidden.set(false);

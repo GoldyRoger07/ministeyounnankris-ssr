@@ -1,5 +1,13 @@
 .communaute-section{
+    background: linear-gradient(to bottom, transparent, white ,  transparent) ,url(/img/home/pale-big-stones-floor-texture.webp);
+    background-size: cover;
     background-attachment: fixed;
     background-position: top;
-    background: linear-gradient(to bottom, transparent, white ,  transparent) ,url(/img/home/pale-big-stones-floor-texture.webp);
+}
+
+/* `background-attachment: fixed` est mal supporté sur mobile (iOS) : fond défilant classique. */
+@media (hover: none) {
+    .communaute-section{
+        background-attachment: scroll;
+    }
 }

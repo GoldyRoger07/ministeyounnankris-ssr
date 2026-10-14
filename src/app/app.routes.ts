@@ -14,6 +14,11 @@ export const routes: Routes = [
                 path: '',
                 pathMatch: 'full',
                 loadComponent: () => import('./pages/home/home')
+            },
+            {
+                path: 'about-us',
+                pathMatch: 'full',
+                loadComponent: () => import('./pages/about/about')
             }
         ]
     }

@@ -1,0 +1,32 @@
+# Blueprint Render : https://render.com/docs/blueprint-spec
+# Angular SSR (prérendu au build + serveur Node/Express pour la redirection de `/`, les 404 et le sitemap).
+services:
+  - type: web
+    name: ministe-youn-nan-kris
+    runtime: node
+    # Virginie : la région la plus proche d'Haïti et de la diaspora nord-américaine.
+    region: virginia
+    # `free` met le service en veille après 15 min sans visite (premier chargement lent) : passer à `starter` en production.
+    plan: free
+    branch: main
+    autoDeployTrigger: commit
+
+    # `npm ci` installe aussi les devDependencies (Angular CLI), nécessaires au build.
+    buildCommand: npm ci && npm run build
+    startCommand: node dist/ministe-youn-nan-kris-ssr/server/server.mjs
+    # Page prérendue : répond vite, et prouve que le serveur Angular sert bien le site.
+    healthCheckPath: /fr
+
+    envVars:
+      # Angular 22 exige Node ^22.22.3, ^24.15.0 ou >= 26.
+      - key: NODE_VERSION
+        value: 24.16.0
+      # Protection SSRF d'Angular : sans cette liste, le serveur répond 400 sur l'adresse *.onrender.com.
+      # Le domaine final (ministeyounnankris.com) est déjà autorisé dans angular.json.
+      - key: NG_ALLOWED_HOSTS
+        value: "*.onrender.com"
+
+    # À décommenter une fois le domaine prêt à être pointé vers Render (DNS à configurer ensuite) :
+    # domains:
+    #   - www.ministeyounnankris.com
+    #   - ministeyounnankris.com

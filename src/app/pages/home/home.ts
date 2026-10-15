@@ -7,9 +7,11 @@ import { Hero } from '../../components/hero/hero';
 import { LanguageService } from '../../services/language.service';
 import { InfiniteHorizontalScroll } from '../../components/infinite-horizontal-scroll/infinite-horizontal-scroll';
 import { injectPageAnimations } from '../../animations/page-animations';
+import { RouterLink } from '@angular/router';
+import { CompanyService } from '../../services/company.service';
 
 @Component({
-  imports: [Header, Footer, Container, Hero, InfiniteHorizontalScroll],
+  imports: [Header, Footer, Container, Hero, InfiniteHorizontalScroll, RouterLink],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
@@ -17,6 +19,26 @@ import { injectPageAnimations } from '../../animations/page-animations';
 export default class Home {
   protected readonly language = inject(LanguageService);
   protected readonly content = computed(() => this.language.content().home);
+  private readonly company = inject(CompanyService).company;
+
+  /** Pas encore de backend : la demande est confiée à la messagerie du visiteur. */
+  protected sendPrayerRequest(event: SubmitEvent): void {
+    event.preventDefault();
+    const data = new FormData(event.target as HTMLFormElement);
+    const field = (name: string) => String(data.get(name) ?? '').trim();
+
+    const body = [
+      field('message'),
+      '',
+      field('nom'),
+      field('email'),
+      field('telephone'),
+      ...(data.has('confidentiel') ? ['', this.content().prayerSection.formulaire.option] : []),
+    ].join('\n');
+
+    const params = new URLSearchParams({ subject: field('sujet'), body });
+    window.location.href = `mailto:${this.company().contact.email.content}?${params.toString().replace(/\+/g, '%20')}`;
+  }
 
   private readonly choralesSection = viewChild.required<ElementRef<HTMLElement>>('choralesSection');
   private readonly choralesLine = viewChild.required<ElementRef<SVGPathElement>>('choralesLine');

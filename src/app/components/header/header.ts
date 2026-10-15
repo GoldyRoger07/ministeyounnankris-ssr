@@ -4,13 +4,14 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { Container } from '../container/container';
-import { CATALOG, LanguageService, Locale } from '../../services/language.service';
+import { LanguageService, Locale } from '../../services/language.service';
 import { CompanyService } from '../../services/company.service';
 import { Dropdown } from '../dropdown/dropdown';
+import { LanguageSelect } from '../language-select/language-select';
 
 @Component({
   selector: 'my-header',
-  imports: [Container, Dropdown, RouterLink, RouterLinkActive],
+  imports: [Container, Dropdown, RouterLink, RouterLinkActive, LanguageSelect],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
@@ -44,19 +45,8 @@ export class Header {
   );
 
   /** Options du sélecteur, chaque langue étant nommée dans sa propre langue (« English », « Français »). */
-  protected readonly languages = (Object.keys(CATALOG) as Locale[]).map((code) => ({
-    code,
-    name: CATALOG[code].languageName,
-  }));
-
   /** Ouvre la page courante dans la langue choisie. */
-  protected changeLanguage(event: Event): void {
-    const locale = (event.target as HTMLSelectElement).value as Locale;
-    if (locale === this.language.language()) {
-      console.log(`this.language.language() = ${this.language.language()}`)
-      console.log(`locale = ${locale}`)
-      return;
-    }
+  protected changeLanguage(locale: Locale): void {
     this.router.navigateByUrl(this.language.translateUrl(this.currentUrl(), locale));
   }
 
@@ -95,7 +85,7 @@ export class Header {
       return;
     }
 
-    if (current > this.lastScrollY && current > 900) {
+    if (current > this.lastScrollY && current > 120) {
       this.hidden.set(true);
     } else if (current < this.lastScrollY) {
       this.hidden.set(false);

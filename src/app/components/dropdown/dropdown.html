@@ -1,11 +1,11 @@
-<div class="dropdown">
+<div class="dropdown" routerLinkActive="is-active">
   <button
     type="button"
-    class="dropdown-trigger flex items-center gap-1 text-sm font-semibold text-(--brand-secondary) transition-colors hover:text-(--brand-primary)"
+    class="dropdown-trigger relative flex items-center gap-1 text-sm font-semibold text-(--brand-secondary) transition-colors hover:text-(--brand-primary)"
     aria-haspopup="true"
   >
     <span>{{ label() }}</span>
-    <i class="ri-arrow-down-s-line text-base" aria-hidden="true"></i>
+    <i class="fa-solid fa-chevron-down text-xs" aria-hidden="true"></i>
   </button>
 
   <ul class="dropdown-menu">

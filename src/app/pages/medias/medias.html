@@ -1,0 +1,87 @@
+<!-- Hero -->
+<section class="min-h-screen bg-cover bg-center pt-24 pb-16 text-gray-900 flex items-center justify-center" style="background-image: linear-gradient(to bottom, white, rgb(255 255 255 / 0.15) 10%, white 92%), url('/img/about/Family Bible Reading in a Bright Living Room.webp');">
+    <my-container>
+        <div class="flex justify-center items-center">
+            <div class="flex flex-col gap-5 items-center text-center w-full">
+                <h1 class="font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-gray-800">{{content().heroSection.title}}</h1>
+                <p data-reveal class="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">{{content().heroSection.desc}}</p>
+                <button data-reveal type="button" (click)="scrollToContent()" class="mt-2 font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors w-full sm:w-auto">
+                    {{content().heroSection.cta1?.label}}
+                    <i class="fa-solid fa-arrow-down ml-2 text-sm" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </my-container>
+</section>
+
+<!-- Catégories -->
+<section #firstSection class="bg-white py-20 md:py-28 scroll-mt-16">
+    <my-container>
+        <div class="flex flex-col gap-4 max-w-2xl mb-12 md:mb-16">
+            <span data-reveal class="text-red-700 font-bold text-xs tracking-[0.25em]">{{content().categoriesSection.subtitle}}</span>
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().categoriesSection.title}}</h2>
+            <p data-reveal class="text-gray-600 leading-relaxed">{{content().categoriesSection.desc}}</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @for (card of content().categoriesSection.cards; track $index) {
+                <article data-reveal class="flex flex-col gap-4 rounded-3xl bg-gray-50 p-7 ring-1 ring-gray-100 transition-colors hover:bg-amber-50">
+                    <span class="flex size-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 text-xl">
+                        <i [class]="card.icon" aria-hidden="true"></i>
+                    </span>
+                    <h3 class="text-lg font-bold text-gray-800">{{card.title}}</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">{{card.desc}}</p>
+                </article>
+            }
+        </div>
+    </my-container>
+</section>
+
+<!-- Galerie -->
+<section class="bg-gray-50 py-20 md:py-28">
+    <my-container>
+        <div class="flex flex-col gap-4 items-center text-center max-w-2xl mx-auto mb-12 md:mb-16">
+            <span data-reveal class="text-red-700 font-bold text-xs tracking-[0.25em]">{{content().gallerySection.subtitle}}</span>
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().gallerySection.title}}</h2>
+            <p data-reveal class="text-gray-600 leading-relaxed">{{content().gallerySection.desc}}</p>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+            @for (photo of content().gallerySection.cards; track $index) {
+                <figure data-reveal class="group relative overflow-hidden rounded-3xl bg-gray-200 shadow-lg shadow-gray-900/10">
+                    <img [src]="photo.image?.url" [alt]="photo.image?.alt ?? photo.title" class="w-full aspect-square object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    <figcaption class="absolute inset-x-0 bottom-0 bg-linear-to-t from-gray-900/70 to-transparent px-5 pt-10 pb-4 text-sm font-bold text-white">
+                        {{photo.title}}
+                    </figcaption>
+                </figure>
+            }
+        </div>
+    </my-container>
+</section>
+
+<!-- Appel à l'action -->
+<section class="cta-glow py-20 md:py-28 text-white">
+    <my-container class="relative z-10 block">
+        <div class="flex flex-col gap-6 items-center text-center max-w-2xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">{{content().callToActionSection.title}}</h2>
+            <p data-reveal class="text-orange-50/80 leading-relaxed">{{content().callToActionSection.desc}}</p>
+            <div data-reveal class="flex items-center gap-3">
+                @for (social of company().socials; track $index) {
+                    <a [href]="social.url" target="_blank" rel="noopener" class="flex size-12 items-center justify-center rounded-full border border-orange-300/40 text-lg text-orange-50 transition-colors hover:border-orange-300/70 hover:bg-orange-500/10">
+                        <i [class]="social.icon" aria-hidden="true"></i>
+                    </a>
+                }
+            </div>
+            <div data-reveal class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto mt-2">
+                <a [routerLink]="language.localize(content().callToActionSection.cta1!.url)" class="font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-orange-500 text-white hover:bg-orange-400 neon-button text-center">
+                    <i class="fa-solid fa-calendar-days mr-2" aria-hidden="true"></i>
+                    {{content().callToActionSection.cta1?.label}}
+                </a>
+                <a [routerLink]="language.localize(content().callToActionSection.cta2!.url)" class="font-bold cursor-pointer py-4 px-7.5 rounded-2xl border border-orange-300/40 text-orange-50 hover:bg-orange-500/10 hover:border-orange-300/70 transition-colors text-center">
+                    <i class="fa-solid fa-phone mr-2" aria-hidden="true"></i>
+                    {{content().callToActionSection.cta2?.label}}
+                </a>
+            </div>
+        </div>
+    </my-container>
+</section>

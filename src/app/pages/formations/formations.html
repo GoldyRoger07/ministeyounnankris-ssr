@@ -1,0 +1,92 @@
+<!-- Hero -->
+<section class="min-h-screen bg-cover bg-center pt-24 pb-16 text-gray-900 flex items-center justify-center" style="background-image: linear-gradient(to bottom, white, rgb(255 255 255 / 0.15) 10%, white 92%), url('/img/about/Family Bible Reading in a Bright Living Room.webp');">
+    <my-container>
+        <div class="flex justify-center items-center">
+            <div class="flex flex-col gap-5 items-center text-center w-full">
+                <h1 class="font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-gray-800">{{content().heroSection.title}}</h1>
+                <p data-reveal class="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">{{content().heroSection.desc}}</p>
+                <button data-reveal type="button" (click)="scrollToContent()" class="mt-2 font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors w-full sm:w-auto">
+                    {{content().heroSection.cta1?.label}}
+                    <i class="fa-solid fa-arrow-down ml-2 text-sm" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </my-container>
+</section>
+
+<!-- Catalogue -->
+<section #firstSection class="bg-white py-20 md:py-28 scroll-mt-16">
+    <my-container>
+        <div class="flex flex-col gap-4 max-w-2xl mb-12 md:mb-16">
+            <span data-reveal class="text-red-700 font-bold text-xs tracking-[0.25em]">{{content().catalogueSection.subtitle}}</span>
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().catalogueSection.title}}</h2>
+            <p data-reveal class="text-gray-600 leading-relaxed">{{content().catalogueSection.desc}}</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            @for (formation of content().catalogueSection.formationCards; track $index) {
+                <article data-reveal class="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-lg shadow-gray-900/5 ring-1 ring-gray-100">
+                    <div class="overflow-hidden">
+                        <img [src]="formation.cover" alt="" class="w-full aspect-16/10 object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    </div>
+                    <div class="flex flex-1 flex-col gap-3 p-6">
+                        <span class="text-amber-600 font-bold text-xs tracking-[0.2em]">{{formation.category}}</span>
+                        <h3 class="text-lg font-bold text-gray-800 leading-snug">{{formation.title}}</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">{{formation.shortDescription}}</p>
+                        <div class="mt-auto flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-gray-100 pt-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-signal text-amber-500" aria-hidden="true"></i>
+                                {{formation.level}}
+                            </span>
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-hourglass-start text-amber-500" aria-hidden="true"></i>
+                                {{formation.duration}}
+                            </span>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    </my-container>
+</section>
+
+<!-- Parcours -->
+<section class="bg-gray-50 py-20 md:py-28">
+    <my-container>
+        <div class="flex flex-col gap-4 items-center text-center max-w-2xl mx-auto mb-12 md:mb-16">
+            <span data-reveal class="text-red-700 font-bold text-xs tracking-[0.25em]">{{content().parcoursSection.subtitle}}</span>
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().parcoursSection.title}}</h2>
+            <p data-reveal class="text-gray-600 leading-relaxed">{{content().parcoursSection.desc}}</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            @for (step of content().parcoursSection.cards; track $index) {
+                <article data-reveal class="border-t border-gray-200 pt-6 flex flex-col gap-3">
+                    <span class="text-amber-500 font-bold text-sm tabular-nums">0{{$index + 1}}</span>
+                    <h3 class="text-xl font-bold text-gray-800">{{step.title}}</h3>
+                    <p class="text-gray-600 leading-relaxed">{{step.desc}}</p>
+                </article>
+            }
+        </div>
+    </my-container>
+</section>
+
+<!-- Appel à l'action -->
+<section class="cta-glow py-20 md:py-28 text-white">
+    <my-container class="relative z-10 block">
+        <div class="flex flex-col gap-6 items-center text-center max-w-2xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">{{content().callToActionSection.title}}</h2>
+            <p data-reveal class="text-orange-50/80 leading-relaxed">{{content().callToActionSection.desc}}</p>
+            <div data-reveal class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto mt-2">
+                <a [routerLink]="language.localize(content().callToActionSection.cta1!.url)" class="font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-orange-500 text-white hover:bg-orange-400 neon-button text-center">
+                    <i class="fa-solid fa-pen-to-square mr-2" aria-hidden="true"></i>
+                    {{content().callToActionSection.cta1?.label}}
+                </a>
+                <a [routerLink]="language.localize(content().callToActionSection.cta2!.url)" class="font-bold cursor-pointer py-4 px-7.5 rounded-2xl border border-orange-300/40 text-orange-50 hover:bg-orange-500/10 hover:border-orange-300/70 transition-colors text-center">
+                    <i class="fa-solid fa-circle-question mr-2" aria-hidden="true"></i>
+                    {{content().callToActionSection.cta2?.label}}
+                </a>
+            </div>
+        </div>
+    </my-container>
+</section>

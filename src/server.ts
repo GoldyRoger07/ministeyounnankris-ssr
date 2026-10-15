@@ -6,23 +6,18 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { buildSitemap } from './sitemap';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+/** Sitemap multilingue, toujours aligné sur les routes (même source : `config/pages.ts`). */
+const sitemap = buildSitemap();
+app.get('/sitemap.xml', (_req, res) => {
+  res.type('application/xml').set('Cache-Control', 'public, max-age=3600').send(sitemap);
+});
 
 /**
  * Serve static files from /browser

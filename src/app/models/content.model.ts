@@ -31,6 +31,11 @@ export interface Card{
   icon?: string
   /** Chiffre clé affiché tel quel, sans effet de compteur (ex. une année). */
   noCounter?: boolean
+  /** Petite étiquette au-dessus du titre (catégorie, type d'événement…). */
+  tag?: string
+  date?: string
+  location?: string
+  url?: string
 
 }
 
@@ -64,7 +69,49 @@ export interface FormInputContent{
 }
 
 /** Pages qui ont leur propre bloc `seo` (clé `data.seo` des routes). */
-export type SeoPage = 'home' | 'about' | 'notFound';
+export type SeoPage = 'home' | 'about' | 'activities' | 'formations' | 'medias' | 'events' | 'contact' | 'donate' | 'notFound';
+
+export type DonationFrequency = 'once' | 'monthly';
+
+export interface PaymentMethod {
+  id: string
+  label: string
+  desc: string
+  icon: string
+}
+
+export interface DonationForm {
+  subtitle: string
+  title: string
+  desc: string
+  /** Libellés des étapes du parcours, dans l'ordre. */
+  steps: string[]
+  frequency: { label: string; once: string; monthly: string; perMonth: string }
+  currency: { label: string }
+  /** Code ISO 4217 → montants proposés. La première devise est celle par défaut. */
+  presets: Record<string, number[]>
+  amount: { label: string; custom: string; placeholder: string }
+  designation: { label: string; options: string[] }
+  donor: {
+    title: string
+    firstName: FormInputContent
+    lastName: FormInputContent
+    email: FormInputContent
+    phone: FormInputContent
+    country: FormInputContent
+    message: FormInputContent
+    anonymous: string
+    optional: string
+  }
+  payment: { title: string; methods: PaymentMethod[] }
+  summary: { title: string; amount: string; frequency: string; designation: string; method: string }
+  secure: string
+  back: string
+  next: string
+  submit: string
+  errors: { amount: string; method: string }
+  success: { title: string; desc: string; again: string }
+}
 
 export interface SiteContent {
   /** Nom affiché de la langue, utilisé par le sélecteur (« Français », « English »). */
@@ -151,7 +198,66 @@ export interface SiteContent {
     missionAndValueSection: Section
     fondateurSection: Section
     callToActionSection: Section
-  
+
+  };
+
+  activities: {
+    seo: Seo;
+    heroSection: Section
+    piliersSection: Section
+    rythmeSection: Section
+    callToActionSection: Section
+  };
+
+  formations: {
+    seo: Seo;
+    heroSection: Section
+    catalogueSection: Section
+    parcoursSection: Section
+    callToActionSection: Section
+  };
+
+  medias: {
+    seo: Seo;
+    heroSection: Section
+    categoriesSection: Section
+    gallerySection: Section
+    callToActionSection: Section
+  };
+
+  events: {
+    seo: Seo;
+    heroSection: Section
+    agendaSection: Section
+    callToActionSection: Section
+  };
+
+  donate: {
+    seo: Seo;
+    heroSection: Section
+    stepsSection: Section
+    form: DonationForm
+    impactSection: Section
+    faqSection: Section
+  };
+
+  contact: {
+    seo: Seo;
+    heroSection: Section
+    infoSection: Section
+    formSection: {
+      subtitle: string
+      title: string
+      desc: string
+      formulaire: {
+        nom: FormInputContent
+        email: FormInputContent
+        telephone: FormInputContent
+        sujet: FormInputContent
+        message: FormInputContent
+        cta: LinkItem
+      }
+    }
   };
 
   notFound: {

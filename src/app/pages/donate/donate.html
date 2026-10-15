@@ -1,0 +1,377 @@
+<!-- Hero -->
+<section class="min-h-[80vh] bg-cover bg-center pt-24 pb-16 text-gray-900 flex items-center justify-center" style="background-image: linear-gradient(to bottom, white, rgb(255 255 255 / 0.15) 10%, white 92%), url('/img/about/Family Bible Reading in a Bright Living Room.webp');">
+    <my-container>
+        <div class="flex justify-center items-center">
+            <div class="flex flex-col gap-5 items-center text-center w-full">
+                <h1 class="font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-gray-800">{{content().heroSection.title}}</h1>
+                <p data-reveal class="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">{{content().heroSection.desc}}</p>
+                <button data-reveal type="button" (click)="scrollToForm()" class="mt-2 font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors w-full sm:w-auto">
+                    <i class="fa-solid fa-hand-holding-heart mr-2" aria-hidden="true"></i>
+                    {{content().heroSection.cta1?.label}}
+                </button>
+            </div>
+        </div>
+    </my-container>
+</section>
+
+<!-- Les trois étapes -->
+<section class="bg-white py-20 md:py-28">
+    <my-container>
+        <div class="flex flex-col gap-4 items-center text-center max-w-2xl mx-auto mb-12 md:mb-16">
+            <span data-reveal class="text-red-700 font-bold text-xs tracking-[0.25em]">{{content().stepsSection.subtitle}}</span>
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().stepsSection.title}}</h2>
+            <p data-reveal class="text-gray-600 leading-relaxed">{{content().stepsSection.desc}}</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            @for (card of content().stepsSection.cards; track $index) {
+                <article data-reveal class="border-t border-gray-200 pt-6 flex flex-col gap-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-amber-500 font-bold text-sm tabular-nums">0{{$index + 1}}</span>
+                        <i [class]="card.icon + ' text-xl text-amber-500/70'" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">{{card.title}}</h3>
+                    <p class="text-gray-600 leading-relaxed">{{card.desc}}</p>
+                </article>
+            }
+        </div>
+    </my-container>
+</section>
+
+<!-- Formulaire de don -->
+<section #formSection class="bg-gray-50 py-20 md:py-28 scroll-mt-16">
+    <my-container>
+        <div class="flex flex-col gap-4 items-center text-center max-w-2xl mx-auto mb-12">
+            <span data-reveal class="text-red-700 font-bold text-xs tracking-[0.25em]">{{form().subtitle}}</span>
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{form().title}}</h2>
+            <p data-reveal class="text-gray-600 leading-relaxed">{{form().desc}}</p>
+        </div>
+
+        <div class="grid lg:grid-cols-[3fr_2fr] gap-8 items-start max-w-5xl mx-auto">
+            <div class="rounded-3xl bg-white p-6 sm:p-10 shadow-lg shadow-gray-900/5 ring-1 ring-gray-100">
+                @if (done()) {
+                    <!-- Confirmation -->
+                    <div class="flex flex-col items-center gap-5 text-center py-6" role="status">
+                        <span class="flex size-16 items-center justify-center rounded-full bg-amber-500/10 text-amber-600 text-2xl">
+                            <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                        </span>
+                        <h3 class="text-2xl font-extrabold text-gray-800">{{form().success.title}}</h3>
+                        <p class="text-gray-600 leading-relaxed max-w-md">{{form().success.desc}}</p>
+                        <button type="button" (click)="restart()" class="mt-2 font-bold cursor-pointer py-4 px-7.5 rounded-2xl border border-gray-200 text-gray-700 hover:border-amber-500 hover:text-amber-600 transition-colors">
+                            {{form().success.again}}
+                        </button>
+                    </div>
+                } @else {
+                    <!-- Indicateur d'étapes -->
+                    <ol class="flex items-center gap-2 mb-10">
+                        @for (label of form().steps; track $index) {
+                            <li class="flex flex-1 items-center gap-2 last:flex-none" [attr.aria-current]="$index === step() ? 'step' : null">
+                                <span
+                                    class="flex size-9 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-colors"
+                                    [class]="$index < step() ? 'bg-amber-500 text-white' : $index === step() ? 'bg-amber-500 text-white ring-4 ring-amber-500/20' : 'bg-gray-100 text-gray-400'"
+                                >
+                                    @if ($index < step()) {
+                                        <i class="fa-solid fa-check text-xs" aria-hidden="true"></i>
+                                    } @else {
+                                        {{$index + 1}}
+                                    }
+                                </span>
+                                <span class="hidden sm:inline text-sm font-semibold" [class]="$index <= step() ? 'text-gray-800' : 'text-gray-400'">{{label}}</span>
+                                @if (!$last) {
+                                    <span class="h-0.5 flex-1 rounded-full transition-colors" [class]="$index < step() ? 'bg-amber-500' : 'bg-gray-200'" aria-hidden="true"></span>
+                                }
+                            </li>
+                        }
+                    </ol>
+
+                    <form #formEl novalidate (submit)="submit($event)" class="flex flex-col gap-8">
+                        <!-- Étape 1 : montant -->
+                        <fieldset [hidden]="step() !== 0" class="flex flex-col gap-7">
+                            <legend class="sr-only">{{form().steps[0]}}</legend>
+
+                            <div class="flex flex-col sm:flex-row gap-5">
+                                <div class="flex flex-1 flex-col gap-2">
+                                    <span class="text-sm font-semibold text-gray-700">{{form().frequency.label}}</span>
+                                    <div class="grid grid-cols-2 gap-1 rounded-2xl bg-gray-100 p-1" role="radiogroup" [attr.aria-label]="form().frequency.label">
+                                        @for (option of ['once', 'monthly']; track option) {
+                                            <button
+                                                type="button"
+                                                role="radio"
+                                                [attr.aria-checked]="frequency() === option"
+                                                (click)="frequency.set($any(option))"
+                                                class="cursor-pointer rounded-xl py-2.5 text-sm font-bold transition-colors"
+                                                [class]="frequency() === option ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'"
+                                            >
+                                                {{option === 'once' ? form().frequency.once : form().frequency.monthly}}
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+
+                                <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700 sm:w-40">
+                                    {{form().currency.label}}
+                                    <select (change)="setCurrency($any($event.target).value)" class="cursor-pointer rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                                        @for (code of currencies(); track code) {
+                                            <option [value]="code" [selected]="code === currency()">{{code}}</option>
+                                        }
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <span class="text-sm font-semibold text-gray-700">{{form().amount.label}}</span>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" role="radiogroup" [attr.aria-label]="form().amount.label">
+                                    @for (value of presets(); track value) {
+                                        <button
+                                            type="button"
+                                            role="radio"
+                                            [attr.aria-checked]="!customAmount() && amount() === value"
+                                            (click)="pickPreset(value)"
+                                            class="cursor-pointer rounded-2xl border-2 py-4 text-base font-bold tabular-nums transition-colors"
+                                            [class]="!customAmount() && amount() === value ? 'border-amber-500 bg-amber-50 text-amber-700' : 'border-gray-200 text-gray-700 hover:border-amber-300'"
+                                        >
+                                            {{format(value)}}
+                                        </button>
+                                    }
+                                </div>
+
+                                @if (customAmount()) {
+                                    <div class="relative mt-1">
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            step="any"
+                                            inputmode="decimal"
+                                            [attr.aria-label]="form().amount.custom"
+                                            [placeholder]="form().amount.placeholder"
+                                            (input)="onCustomInput($event)"
+                                            class="w-full rounded-xl border-2 border-amber-500 bg-white px-4 py-3.5 pr-16 font-bold tabular-nums outline-none"
+                                            autofocus
+                                        >
+                                        <span class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-400">{{currency()}}</span>
+                                    </div>
+                                } @else {
+                                    <button type="button" (click)="pickCustom()" class="mt-1 w-fit cursor-pointer text-sm font-semibold text-amber-600 underline decoration-amber-300 underline-offset-4 hover:decoration-amber-600">
+                                        {{form().amount.custom}}
+                                    </button>
+                                }
+                            </div>
+
+                            <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                                {{form().designation.label}}
+                                <select (change)="designation.set(+$any($event.target).value)" class="cursor-pointer rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                                    @for (option of form().designation.options; track $index) {
+                                        <option [value]="$index" [selected]="$index === designation()">{{option}}</option>
+                                    }
+                                </select>
+                            </label>
+                        </fieldset>
+
+                        <!-- Étape 2 : informations -->
+                        <fieldset data-step="1" [hidden]="step() !== 1" class="grid sm:grid-cols-2 gap-5">
+                            <legend class="sr-only">{{form().donor.title}}</legend>
+
+                            <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                                {{form().donor.firstName.label}}
+                                <input name="firstName" type="text" required autocomplete="given-name" [placeholder]="form().donor.firstName.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                            </label>
+
+                            <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                                {{form().donor.lastName.label}}
+                                <input name="lastName" type="text" required autocomplete="family-name" [placeholder]="form().donor.lastName.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                            </label>
+
+                            <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                                {{form().donor.email.label}}
+                                <input name="email" type="email" required autocomplete="email" [placeholder]="form().donor.email.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                            </label>
+
+                            <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                                <span>{{form().donor.phone.label}} <span class="font-normal text-gray-400">({{form().donor.optional}})</span></span>
+                                <input name="phone" type="tel" autocomplete="tel" [placeholder]="form().donor.phone.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                            </label>
+
+                            <label class="sm:col-span-2 flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                                {{form().donor.country.label}}
+                                <select name="country" required autocomplete="country" class="cursor-pointer rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                                    <option value="" disabled selected>{{form().donor.country.placeholder}}</option>
+                                    @for (country of countries().suggested; track country.code) {
+                                        <option [value]="country.code">{{country.name}}</option>
+                                    }
+                                    <option disabled>──────────</option>
+                                    @for (country of countries().rest; track country.code) {
+                                        <option [value]="country.code">{{country.name}}</option>
+                                    }
+                                </select>
+                            </label>
+
+                            <label class="sm:col-span-2 flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                                <span>{{form().donor.message.label}} <span class="font-normal text-gray-400">({{form().donor.optional}})</span></span>
+                                <textarea name="message" rows="3" [placeholder]="form().donor.message.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500 resize-y"></textarea>
+                            </label>
+
+                            <label class="sm:col-span-2 flex items-start gap-3 text-sm text-gray-600 cursor-pointer">
+                                <input name="anonymous" type="checkbox" class="mt-0.5 size-4 shrink-0 accent-amber-500">
+                                {{form().donor.anonymous}}
+                            </label>
+                        </fieldset>
+
+                        <!-- Étape 3 : paiement -->
+                        <fieldset [hidden]="step() !== 2" class="flex flex-col gap-3">
+                            <legend class="text-sm font-semibold text-gray-700 mb-2">{{form().payment.title}}</legend>
+                            <div class="grid sm:grid-cols-2 gap-3" role="radiogroup" [attr.aria-label]="form().payment.title">
+                                @for (m of form().payment.methods; track m.id) {
+                                    <button
+                                        type="button"
+                                        role="radio"
+                                        [attr.aria-checked]="method() === m.id"
+                                        (click)="pickMethod(m.id)"
+                                        class="cursor-pointer flex items-start gap-4 rounded-2xl border-2 p-4 text-left transition-colors"
+                                        [class]="method() === m.id ? 'border-amber-500 bg-amber-50' : 'border-gray-200 hover:border-amber-300'"
+                                    >
+                                        <span class="flex size-10 shrink-0 items-center justify-center rounded-xl text-lg" [class]="method() === m.id ? 'bg-amber-500 text-white' : 'bg-gray-100 text-gray-500'">
+                                            <i [class]="m.icon" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="flex flex-col gap-0.5">
+                                            <span class="font-bold text-gray-800">{{m.label}}</span>
+                                            <span class="text-xs text-gray-500 leading-snug">{{m.desc}}</span>
+                                        </span>
+                                    </button>
+                                }
+                            </div>
+                        </fieldset>
+
+                        @if (error()) {
+                            <p class="flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700" role="alert">
+                                <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                                {{error()}}
+                            </p>
+                        }
+
+                        <!-- Navigation -->
+                        <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 border-t border-gray-100 pt-6">
+                            @if (step() > 0) {
+                                <button type="button" (click)="back()" class="cursor-pointer font-bold text-gray-500 hover:text-gray-800 transition-colors py-3">
+                                    <i class="fa-solid fa-arrow-left mr-2 text-sm" aria-hidden="true"></i>
+                                    {{form().back}}
+                                </button>
+                            } @else {
+                                <span></span>
+                            }
+
+                            @if (step() < form().steps.length - 1) {
+                                <button type="button" (click)="next()" class="font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors">
+                                    {{form().next}}
+                                    <i class="fa-solid fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+                                </button>
+                            } @else {
+                                <button type="submit" class="font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors">
+                                    <i class="fa-solid fa-lock mr-2 text-sm" aria-hidden="true"></i>
+                                    {{form().submit}} · {{formattedAmount()}}
+                                </button>
+                            }
+                        </div>
+                    </form>
+                }
+            </div>
+
+            <!-- Récapitulatif -->
+            <aside class="lg:sticky lg:top-24 flex flex-col gap-4">
+                <div class="rounded-3xl bg-white p-6 sm:p-8 shadow-lg shadow-gray-900/5 ring-1 ring-gray-100">
+                    <h3 class="text-xs font-bold text-gray-500 tracking-[0.2em] uppercase mb-5">{{form().summary.title}}</h3>
+                    <p class="text-4xl font-extrabold text-gray-800 tabular-nums">
+                        {{formattedAmount()}}
+                        @if (frequency() === 'monthly') {
+                            <span class="text-base font-bold text-gray-400">{{form().frequency.perMonth}}</span>
+                        }
+                    </p>
+                    <dl class="mt-6 flex flex-col gap-3 border-t border-gray-100 pt-5 text-sm">
+                        <div class="flex justify-between gap-4">
+                            <dt class="text-gray-500">{{form().summary.frequency}}</dt>
+                            <dd class="font-semibold text-gray-800 text-right">{{frequency() === 'monthly' ? form().frequency.monthly : form().frequency.once}}</dd>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <dt class="text-gray-500">{{form().summary.designation}}</dt>
+                            <dd class="font-semibold text-gray-800 text-right">{{form().designation.options[designation()]}}</dd>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <dt class="text-gray-500">{{form().summary.method}}</dt>
+                            <dd class="font-semibold text-gray-800 text-right">{{methodLabel()}}</dd>
+                        </div>
+                    </dl>
+                </div>
+                <p class="flex items-start gap-3 px-2 text-xs text-gray-500 leading-relaxed">
+                    <i class="fa-solid fa-shield-halved mt-0.5 text-amber-500" aria-hidden="true"></i>
+                    {{form().secure}}
+                </p>
+            </aside>
+        </div>
+    </my-container>
+</section>
+
+<!-- Impact -->
+<section class="bg-white py-20 md:py-28">
+    <my-container>
+        <div class="flex flex-col gap-4 max-w-2xl mb-12 md:mb-16">
+            <span data-reveal class="text-red-700 font-bold text-xs tracking-[0.25em]">{{content().impactSection.subtitle}}</span>
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().impactSection.title}}</h2>
+            <p data-reveal class="text-gray-600 leading-relaxed">{{content().impactSection.desc}}</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @for (card of content().impactSection.cards; track $index) {
+                <article data-reveal class="flex flex-col gap-4 rounded-3xl bg-gray-50 p-7 ring-1 ring-gray-100">
+                    <span class="flex size-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 text-xl">
+                        <i [class]="card.icon" aria-hidden="true"></i>
+                    </span>
+                    <h3 class="text-lg font-bold text-gray-800">{{card.title}}</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">{{card.desc}}</p>
+                </article>
+            }
+        </div>
+    </my-container>
+</section>
+
+<!-- FAQ -->
+<section class="bg-gray-50 py-20 md:py-28">
+    <my-container>
+        <div class="flex flex-col gap-4 items-center text-center max-w-2xl mx-auto mb-12 md:mb-16">
+            <span data-reveal class="text-red-700 font-bold text-xs tracking-[0.25em]">{{content().faqSection.subtitle}}</span>
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().faqSection.title}}</h2>
+            <p data-reveal class="text-gray-600 leading-relaxed">{{content().faqSection.desc}}</p>
+        </div>
+
+        <div class="flex flex-col gap-3 max-w-3xl mx-auto">
+            @for (item of content().faqSection.cards; track $index) {
+                <div data-reveal class="rounded-2xl bg-white ring-1 transition-shadow duration-300" [class]="openFaq() === $index ? 'ring-amber-200 shadow-lg shadow-gray-900/5' : 'ring-gray-100'">
+                    <h3>
+                        <button
+                            type="button"
+                            [id]="'faq-q-' + $index"
+                            [attr.aria-expanded]="openFaq() === $index"
+                            [attr.aria-controls]="'faq-a-' + $index"
+                            (click)="toggleFaq($index)"
+                            class="flex w-full cursor-pointer items-center justify-between gap-4 p-5 sm:p-6 text-left font-bold text-gray-800 transition-colors hover:text-amber-600"
+                        >
+                            {{item.title}}
+                            <i class="fa-solid fa-plus shrink-0 text-sm text-amber-500 transition-transform duration-300" [class.rotate-45]="openFaq() === $index" aria-hidden="true"></i>
+                        </button>
+                    </h3>
+                    <!-- Grille 0fr → 1fr : la hauteur s'anime sans la connaître à l'avance. -->
+                    <div
+                        [id]="'faq-a-' + $index"
+                        role="region"
+                        [attr.aria-labelledby]="'faq-q-' + $index"
+                        class="faq-panel grid"
+                        [class.is-open]="openFaq() === $index"
+                        [attr.inert]="openFaq() === $index ? null : ''"
+                    >
+                        <div class="overflow-hidden">
+                            <p class="px-5 sm:px-6 pb-6 -mt-1 text-gray-600 leading-relaxed">{{item.desc}}</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </my-container>
+</section>

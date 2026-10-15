@@ -2,6 +2,76 @@
 
 @import 'tailwindcss';
 
+/*
+ * Poppins auto-hébergée (public/fonts/Poppins), découpée par plages Unicode :
+ * le navigateur ne télécharge que les fichiers dont la page utilise des caractères (≈ 8 Ko par graisse en latin).
+ * Seules les graisses utilisées sont déclarées (400, 600, 700 et plus) ; Regular et Bold latin sont préchargés dans index.html.
+ * Thin, Light et Medium restent disponibles dans le dossier : ajouter leur @font-face au besoin.
+ */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Poppins/Poppins-Regular-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Poppins/Poppins-Regular-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Poppins/Poppins-SemiBold-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Poppins/Poppins-SemiBold-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url("/fonts/Poppins/Poppins-Bold-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url("/fonts/Poppins/Poppins-Bold-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Police de secours calée sur les dimensions de Poppins : le texte ne bouge pas quand Poppins arrive (CLS). */
+@font-face {
+  font-family: "Poppins Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Helvetica");
+  ascent-override: 93.62%;
+  descent-override: 31.21%;
+  line-gap-override: 8.92%;
+  size-adjust: 112.16%;
+}
+
+@theme {
+  --font-sans: "Poppins", "Poppins Fallback", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+
 html {
   margin: 0;
   min-height: 100%;
@@ -23,3 +93,66 @@ body{
   min-height: 100vh;
   background: transparent !important;
 } */
+
+/* Appel à l'action : fond quasi noir chaud, éclairé par une barre LED néon orange, sous un grain de bruit. */
+.cta-glow {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: #0d0501;
+    background-image: radial-gradient(60% 60% at 50% 0%, rgb(251 146 60 / 0.7), rgb(234 88 12 / 0.25) 45%, transparent 75%);
+}
+
+/* Barre LED : tube blanc-orange incandescent, dont les ombres superposées forment le halo néon. */
+.cta-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(75%, 760px);
+    /* height: 0px; */
+    transform: translateX(-50%);
+    border-radius: 9999px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, #fdba74 15%, #fff7ed 50%, #fdba74 85%, transparent);
+    box-shadow:
+        0 0 6px 1px rgb(255 237 213 / 0.9),
+        0 0 20px 6px rgb(251 146 60 / 0.9),
+        0 0 60px 20px rgb(249 115 22 / 0.65),
+        0 0 140px 50px rgb(234 88 12 / 0.45),
+        0 0 260px 110px rgb(234 88 12 / 0.25);
+    animation: led-breathe 4s ease-in-out infinite;
+}
+
+/* Bruit généré en SVG (feTurbulence) : aucune image à charger. */
+.cta-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+}
+
+@keyframes led-breathe {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cta-glow::before {
+        animation: none;
+    }
+}
+
+/* Bouton principal : halo néon qui s'intensifie au survol. */
+.neon-button {
+    box-shadow: 0 0 12px rgb(251 146 60 / 0.6), 0 0 36px rgb(234 88 12 / 0.45);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.neon-button:hover {
+    box-shadow: 0 0 18px rgb(253 186 116 / 0.85), 0 0 60px rgb(249 115 22 / 0.65);
+}

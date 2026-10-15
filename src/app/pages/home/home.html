@@ -68,7 +68,7 @@
 <section class=" bg-gray-100 min-h-100 py-5">
     <my-container>
         <div class="flex flex-col gap-5 items-center mb-5">
-            <div class="mx-auto flex flex-col gap-2.5 items-center text-center w-full md:w-3/4">
+            <div class="mx-auto flex flex-col gap-2.5 items-center text-center w-full md:w-3/4 py-5">
 
                 <h2 class="text-gray-700 text-2xl sm:text-3xl font-extrabold ">{{content().nosPilierSection.title}}</h2>
                 <!-- <p class="text-sm">{{content().whoWeAreSection.desc}}</p> -->
@@ -146,98 +146,102 @@
     </my-container>
 </section>
 
-<section class="min-h-[70vh] bg-linear-to-b from-amber-400 to-white py-10">
+<!-- Formations -->
+<section class="bg-linear-to-b from-amber-400 to-white py-20 md:py-28">
     <my-container>
-        <div class="flex flex-col items-center gap-5">
-            <div class="mb-5 sm:mb-10 text-center w-full md:w-3/4">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-700">{{content().formationSection.title}}</h2>
-                <p data-reveal class="text-base sm:text-xl text-gray-600">{{content().formationSection.subtitle}}</p>
-            </div>
+        <div class="flex flex-col gap-4 items-center text-center max-w-2xl mx-auto mb-12 md:mb-16">
+            <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().formationSection.title}}</h2>
+            <p data-reveal class="text-gray-700 leading-relaxed">{{content().formationSection.subtitle}}</p>
+        </div>
 
-            <div class="flex flex-col gap-5 w-full">
-                @for(card4 of content().formationSection.formationCards; track $index){
-                    <div data-reveal class="bg-white/25 w-full grid grid-cols-[88px_1fr] sm:grid-cols-[150px_1fr] gap-3 sm:gap-5 p-3 sm:p-5 cursor-pointer">
-                       <img [src]="card4.cover" class="aspect-square object-cover object-center" alt="">
-                        <div class="flex flex-col gap-2 justify-between">
-                            <div class="flex flex-col gap-1 sm:gap-2">
-
-                                <span class="text-amber-500 font-bold text-xs">{{card4.category}}</span>
-                                <span class="font-bold text-gray-700 text-base sm:text-xl">{{card4.title}}</span>
-                            </div>
-                            <div class="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm text-gray-600">
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-signal"></i>
-                                    <span>{{card4.level}}</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-hourglass-start"></i>
-                                    <span>{{card4.duration}}</span>
-                                </div>
-                            </div>
-                            <p class="text-sm sm:text-base text-gray-600">{{card4.shortDescription}}</p>
-                            <!-- <span class="text-xs text-gray-600">{{card4.desc}}</span> -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            @for (formation of content().formationSection.formationCards; track $index) {
+                <article data-reveal class="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-lg shadow-gray-900/5 ring-1 ring-gray-100">
+                    <div class="overflow-hidden">
+                        <img [src]="formation.cover" alt="" class="w-full aspect-16/10 object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    </div>
+                    <div class="flex flex-1 flex-col gap-3 p-6">
+                        <span class="text-amber-600 font-bold text-xs tracking-[0.2em]">{{formation.category}}</span>
+                        <h3 class="text-lg font-bold text-gray-800 leading-snug">{{formation.title}}</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">{{formation.shortDescription}}</p>
+                        <div class="mt-auto flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-gray-100 pt-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-signal text-amber-500" aria-hidden="true"></i>
+                                {{formation.level}}
+                            </span>
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-hourglass-start text-amber-500" aria-hidden="true"></i>
+                                {{formation.duration}}
+                            </span>
                         </div>
                     </div>
-                }
-            </div>
+                </article>
+            }
+        </div>
 
-            <button data-reveal class="font-bold cursor-pointer p-4 sm:p-5 rounded-2xl bg-amber-500 text-white w-full sm:w-auto">{{content().formationSection.cta1?.label}}</button>
+        <div data-reveal class="mt-12 flex justify-center">
+            <a [routerLink]="language.localize('/formations')" class="font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors w-full sm:w-auto text-center">
+                {{content().formationSection.cta1?.label}}
+                <i class="fa-solid fa-arrow-right ml-2 text-sm" aria-hidden="true"></i>
+            </a>
         </div>
     </my-container>
 </section>
 
-<section class="py-10 min-h-170 bg-cover bg-center md:bg-bottom-left" style="background-image: linear-gradient(to bottom,  transparent 80%, white),url('/img/home/Serene Prayer Beside an Open Bible.webp');">
-    <div class="flex flex-col items-center md:items-end w-full px-4 md:px-0">
-        <div class="flex flex-col items-center md:items-start w-full md:w-1/2 bg-white/85 md:bg-transparent p-5 md:p-0">
-            <div class="mb-6 md:mb-10 text-center w-full lg:w-3/4 flex flex-col">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-700">{{content().prayerSection.title}}</h2>
-                    <p data-reveal class="text-md text-gray-600">{{content().prayerSection.desc}}</p>
-            </div>
-            <div class="flex flex-col w-full lg:w-3/4">
-                <h3 data-reveal class="font-bold text-gray-700">{{content().prayerSection.title2}}</h3>
-                <p data-reveal class="text-sm text-gray-500">{{content().prayerSection.desc2}}</p>
-                <form data-reveal class="flex flex-col gap-3 my-6 md:my-10 w-full">
-                    <div class="flex flex-col gap-2">
+<!-- Demande de prière -->
+<section class="py-20 md:py-28 bg-cover bg-center md:bg-bottom-left" style="background-image: linear-gradient(to bottom, white, transparent 15%, transparent 85%, white), url('/img/home/Serene Prayer Beside an Open Bible.webp');">
+    <my-container>
+        <div class="flex justify-center md:justify-end">
+            <div data-reveal class="w-full md:w-3/5 lg:w-1/2 rounded-3xl bg-white/95 backdrop-blur-sm p-6 sm:p-10 shadow-xl shadow-gray-900/10 ring-1 ring-gray-100">
+                <div class="flex flex-col gap-3 mb-8">
+                    <h2 class="text-gray-800 text-3xl sm:text-4xl font-extrabold leading-tight">{{content().prayerSection.title}}</h2>
+                    <p class="text-gray-600 leading-relaxed">{{content().prayerSection.desc}}</p>
+                </div>
 
-                        <label>{{content().prayerSection.formulaire.nom.label}}</label>
-                        <input type="text" [placeholder]="content().prayerSection.formulaire.nom.placeholder" class="border border-gray-300 p-2 w-full">
-                    </div>
+                <div class="flex flex-col gap-1 border-t border-gray-200 pt-6 mb-6">
+                    <h3 class="text-lg font-bold text-gray-800">{{content().prayerSection.title2}}</h3>
+                    <p class="text-sm text-gray-600">{{content().prayerSection.desc2}}</p>
+                </div>
 
-                    <div class="flex flex-col gap-2">
+                <form (submit)="sendPrayerRequest($event)" class="grid sm:grid-cols-2 gap-5">
+                    <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                        {{content().prayerSection.formulaire.nom.label}}
+                        <input name="nom" type="text" required autocomplete="name" [placeholder]="content().prayerSection.formulaire.nom.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                    </label>
 
-                        <label>{{content().prayerSection.formulaire.email.label}}</label>
-                        <input type="email" [placeholder]="content().prayerSection.formulaire.email.placeholder" class="border border-gray-300 p-2 w-full">
-                    </div>
+                    <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                        {{content().prayerSection.formulaire.email.label}}
+                        <input name="email" type="email" required autocomplete="email" [placeholder]="content().prayerSection.formulaire.email.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                    </label>
 
-                    <div class="flex flex-col gap-2">
+                    <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                        {{content().prayerSection.formulaire.telephone.label}}
+                        <input name="telephone" type="tel" autocomplete="tel" [placeholder]="content().prayerSection.formulaire.telephone.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                    </label>
 
-                        <label>{{content().prayerSection.formulaire.telephone.label}}</label>
-                        <input type="tel" [placeholder]="content().prayerSection.formulaire.telephone.placeholder" class="border border-gray-300 p-2 w-full">
-                    </div>
+                    <label class="flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                        {{content().prayerSection.formulaire.sujet.label}}
+                        <input name="sujet" type="text" required [placeholder]="content().prayerSection.formulaire.sujet.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500">
+                    </label>
 
-                    <div class="flex flex-col gap-2">
+                    <label class="sm:col-span-2 flex flex-col gap-2 text-sm font-semibold text-gray-700">
+                        {{content().prayerSection.formulaire.message.label}}
+                        <textarea name="message" rows="5" required [placeholder]="content().prayerSection.formulaire.message.placeholder" class="rounded-xl border border-gray-200 bg-white px-4 py-3 font-normal outline-none transition-colors focus:border-amber-500 resize-y"></textarea>
+                    </label>
 
-                        <label>{{content().prayerSection.formulaire.sujet.label}}</label>
-                        <input type="text" [placeholder]="content().prayerSection.formulaire.sujet.placeholder" class="border border-gray-300 p-2 w-full">
-                    </div>
+                    <label class="sm:col-span-2 flex items-start gap-3 text-sm text-gray-600 cursor-pointer">
+                        <input name="confidentiel" type="checkbox" class="mt-0.5 size-4 shrink-0 accent-amber-500">
+                        {{content().prayerSection.formulaire.option}}
+                    </label>
 
-                    <div class="flex flex-col gap-2">
-
-                        <label>{{content().prayerSection.formulaire.message.label}}</label>
-                        <textarea [placeholder]="content().prayerSection.formulaire.message.placeholder" class="border border-gray-300 p-2 w-full"></textarea>
-                    </div>
-
-                    <div class="flex items-start gap-2">
-
-                        <input type="checkbox" class="border border-gray-300 p-2 mt-1">
-                        <label>{{content().prayerSection.formulaire.option}}</label>
-                    </div>
-
-                    <button class="font-bold cursor-pointer p-4 sm:p-5 rounded-2xl bg-amber-500 text-white">{{content().prayerSection.formulaire.cta?.label}}</button>
+                    <button type="submit" class="sm:col-span-2 sm:justify-self-start font-bold cursor-pointer py-4 px-7.5 rounded-2xl bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-600 transition-colors">
+                        <i class="fa-solid fa-hands-praying mr-2" aria-hidden="true"></i>
+                        {{content().prayerSection.formulaire.cta.label}}
+                    </button>
                 </form>
             </div>
         </div>
-    </div>
+    </my-container>
 </section>
 
 <section class="min-h-100 py-10 bg-cover bg-bottom-right" style="background-image: linear-gradient(to bottom, white 1%, transparent, transparent),url('/img/home/Sunlit Cross Over Misty Hills.webp');">

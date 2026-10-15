@@ -1,0 +1,114 @@
+:host {
+  position: relative;
+  display: inline-block;
+}
+
+.language-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border: 2px solid #fff;
+  border-radius: var(--brand-radius);
+  background-color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brand-secondary);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+/* Sur fond blanc (menu mobile), le bouton a besoin d'un contour visible. */
+:host(.is-outlined) .language-trigger {
+  border-color: rgb(229 231 235);
+  font-size: 0.875rem;
+}
+
+.language-trigger:hover,
+.language-trigger:focus-visible,
+.language-trigger.is-open {
+  border-color: var(--brand-primary);
+  outline: none;
+}
+
+.language-chevron {
+  transition: transform 0.3s ease-in-out;
+}
+
+.language-trigger.is-open .language-chevron {
+  transform: rotate(180deg);
+}
+
+/* Même apparence que les menus déroulants de la navigation. */
+.language-list {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 30;
+  min-width: 10rem;
+  max-height: 16rem;
+  margin: 0;
+  padding: 0.375rem;
+  overflow-y: auto;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid rgb(0 0 0 / 0.06);
+  border-radius: var(--brand-radius);
+  box-shadow: 0 18px 40px -20px rgb(17 17 17 / 0.45);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+}
+
+.language-list.opens-up {
+  top: auto;
+  bottom: calc(100% + 0.5rem);
+  right: 50%;
+  transform: translate(50%, 0.5rem);
+}
+
+.language-list.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.language-list.opens-up.is-open {
+  transform: translate(50%, 0);
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--brand-secondary);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.language-option.is-active {
+  background-color: color-mix(in srgb, var(--brand-primary) 8%, transparent);
+}
+
+.language-option[aria-selected='true'] {
+  font-weight: 600;
+  color: var(--brand-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .language-list,
+  .language-chevron {
+    transition: none;
+  }
+}

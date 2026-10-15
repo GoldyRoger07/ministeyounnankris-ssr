@@ -10,6 +10,37 @@
   cursor: pointer;
 }
 
+/* Même filet que les liens du header ; actif si une sous-page est ouverte. */
+.dropdown-trigger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0.25rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--brand-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-trigger::after,
+.dropdown-trigger:focus-visible::after,
+.dropdown.is-active .dropdown-trigger::after {
+  transform: scaleX(1);
+}
+
+.dropdown.is-active .dropdown-trigger {
+  color: var(--brand-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-trigger::after {
+    transition: none;
+  }
+}
+
 .dropdown-menu {
   position: absolute;
   top: 100%;

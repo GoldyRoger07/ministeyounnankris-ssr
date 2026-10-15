@@ -4,8 +4,10 @@ header {
   color: #fff !important;
 }
 
-/* Ombre et filet n'apparaissent qu'une fois la page défilée. */
+/* Fond, ombre et filet n'apparaissent qu'une fois la page défilée :
+   les liens restent lisibles au-dessus des sections sombres. */
 header.is-scrolled {
+  background-color: rgb(255 255 255 / 0.9);
   border-bottom-color: rgb(0 0 0 / 0.07);
   box-shadow: 0 6px 20px -14px rgb(17 17 17 / 0.35);
 }
@@ -31,8 +33,48 @@ header.hide-header {
   transform: translateY(0);
 }
 
-h1,h2,h3,h4,h5,h6,p,div,span,button,nav, a, select, option{
-  font-family: "Poppins", sans-serif !important;
+/* Liens du menu : filet qui se déploie de gauche à droite au survol,
+   se rétracte en sens inverse, et reste visible sur la route active. */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0.25rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--brand-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  
+}
+
+
+/* .nav-link.is-active::after */
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+/* `!important` : l'emporte sur la couleur Tailwind du lien (`text-gray-700`). */
+.nav-link.is-active {
+  color: var(--brand-primary) !important;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link::after {
+    transition: none;
+  }
 }
 
 /* Bouton « Faire un don » : doré, halo orange, et reflet oblique qui le balaie toutes les 2,5 s. */

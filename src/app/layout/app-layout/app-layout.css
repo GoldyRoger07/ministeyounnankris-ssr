@@ -3,8 +3,8 @@
  * Les composants l'utilisent via Tailwind : `text-(--brand-primary)`, `bg-(--brand-primary)`…
  */
 :host {
-  --brand-primary: #0c73ba;
   --brand-accent: #faaf3b;
+  --brand-primary: #faaf3b;
   --brand-secondary: #1f2937;
   --brand-muted: #6b7280;
   --brand-radius: 0.375rem;
